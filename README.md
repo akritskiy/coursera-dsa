@@ -5,3 +5,4 @@ A selection of problems from the Data Structures and Algorithms Specialization (
   - [FibonacciHuge.java](https://github.com/akritskiy/coursera-dsa/blob/master/FibonacciHuge.java)
   - [FibonacciSumLastDigit.java](https://github.com/akritskiy/coursera-dsa/blob/master/FibonacciSumLastDigit.java)
   - [FibonacciPartialSum.java](https://github.com/akritskiy/coursera-dsa/blob/master/FibonacciPartialSum.java)
+  - [LCM.java](https://github.com/akritskiy/coursera-dsa/blob/master/LCM.java)
