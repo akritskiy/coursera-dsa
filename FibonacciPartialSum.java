@@ -1,5 +1,5 @@
-//Given 0 <= m <= n <= 10^18, compute the last digit of the sum of F(m) + F(m+1) + ... + F(n)
-//As usual, F(n) is the nth Fibonacci number
+//Compute the last digit of the sum of F(m) + F(m+1) + ... + F(n)
+//F(n) is the nth Fibonacci number, and m and n can be as large as 10^18
 
 import java.util.*;
 
