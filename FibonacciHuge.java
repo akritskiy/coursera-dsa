@@ -1,3 +1,5 @@
+//Compute F(n) mod m, where F(n) is the nth Fibonacci number, n can be as large as 10^18, and m can be as large as 10^5
+
 import java.util.*;
 
 public class FibonacciHuge {
@@ -8,13 +10,13 @@ public class FibonacciHuge {
         System.out.println(fibMod(n, m));
     }
     
-    //returns F(n) mod m. F(n) is the nth Fibonacci number.
+    //returns F(n) mod m
     private static long fibMod(long n, long m) {
         long i = n % pisano(m);
         return fib(i, m) % m;
     }
     
-    //returns the relevant digits of F(n)
+    //returns the relevant digits of the nth Fibonacci number
     private static long fib(long n, long m) {
         if (n <= 1) {
             return n;
