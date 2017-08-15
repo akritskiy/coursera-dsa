@@ -1,5 +1,12 @@
-//Given n integers a(i), a(i+1), ... , a(n), compose the largest number possible.
+//Introduction:
+//As the last question of a successful interview, your boss gives you a few pieces of paper with numbers on them
+//and asks you to compose the largest number from these numbers. The resulting number is going to be your salary,
+//so you are very interested in maximizing this number.
+
+//Given n integers a(i), a(i+1), ... , a(n), compose the largest number possible using the integers a(i) ... a(n).
 //1 <= n <= 100, 1 <= a(i) <= 10^3 for all i
+
+//e.g. given 5 and 51, 551 > 515, so 551 is the preferred arrangement.
 
 import java.util.*;
 
