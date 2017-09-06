@@ -1,4 +1,4 @@
-//Given an array of n elements, determine if the array contains an element that occurs more than n/2 times
+//Given an array of n elements, determine if the array contains an element that occurs more than n/2 times.
 //Design a divide-and-conquer O(nlog(n)) algorithm.
 
 import java.util.*;
@@ -6,31 +6,30 @@ import java.util.*;
 public class MajorityElement {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        
         int n = input.nextInt();
         int[] arr = new int[n];
         for (int i = 0; i < n; i++) {
             arr[i] = input.nextInt();
         }
-
-        int result = finalCheck(arr);
         
+        int result = finalCheck(arr);        
         if (result == -1) {
-            System.out.println(0);
+            System.out.println(0); //if there isn't a majority element, print 0
         }
         else {
-            System.out.println(1);
+            System.out.println(1); //if there is a majority element, print 1
         }
 
         //STRESS TEST
         // while (true) {
-        //     int n = 10;
-
-        //     int[] a = new int[n];
+        //     int n = (int)(Math.random() * 15 + 1);
+        //     int[] arr = new int[n];
         //     for (int i = 0; i < n; i++) {
-        //         a[i] = (int)(Math.random() * 3 + 1);
+        //         arr[i] = (int)(Math.random() * 3 + 1);
         //     }
-        //     int naiveResult = naive(a);
-        //     int result = major(a);
+        //     int naiveResult = naive(arr);
+        //     int result = major(arr);
         //     if (naiveResult == result) {
         //         System.out.println("Correct");
         //     }
@@ -38,9 +37,9 @@ public class MajorityElement {
         //         System.out.println("Wrong");
         //         System.out.println("Naive result: " + naiveResult);
         //         System.out.println("Result: " + result);
-        //         System.out.println(Arrays.toString(a));
-        //         Arrays.sort(a);
-        //         System.out.println(Arrays.toString(a));
+        //         System.out.println(Arrays.toString(arr));
+        //         Arrays.sort(arr);
+        //         System.out.println(Arrays.toString(arr));
         //         break;
         //     }
         // }
@@ -163,8 +162,8 @@ public class MajorityElement {
     //     int[] copy = new int[n];
     //     System.arraycopy(arr, 0, copy, 0, n);
     //     Arrays.sort(copy);
+    
     //     int key = copy[mid];
-
     //     int count = 0;
     //     for (int i = 0; i < n; i++) {
     //         if (copy[i] == key) {
