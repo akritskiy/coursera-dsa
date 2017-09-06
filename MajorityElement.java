@@ -29,7 +29,7 @@ public class MajorityElement {
         //         arr[i] = (int)(Math.random() * 3 + 1);
         //     }
         //     int naiveResult = naive(arr);
-        //     int result = major(arr);
+        //     int result = finalCheck(arr);
         //     if (naiveResult == result) {
         //         System.out.println("Correct");
         //     }
