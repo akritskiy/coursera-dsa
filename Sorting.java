@@ -20,7 +20,7 @@ public class Sorting {
             System.out.print(arr[i] + " ");
         }
 
-        // //TEST:
+        // //TEST
         // int n = (int)(Math.random() * 20 + 1);
         // int[] a = new int[n];
         // for (int i = 0; i < n; i++) {
@@ -50,9 +50,9 @@ public class Sorting {
             return arr;
         }
 
-        int[] m = partition(arr, left, right);
-        quickSort(arr, left, m[0]);
-        quickSort(arr, m[1], right);
+        int[] partitionIndexes = partition(arr, left, right);
+        quickSort(arr, left, partitionIndexes[0]);
+        quickSort(arr, partitionIndexes[1], right);
         return arr;
     }
     //END QUICK SORT METHOD
@@ -72,7 +72,7 @@ public class Sorting {
         arr[k] = temp;
         int pivot = arr[left];
 
-        int n = right; //n = rightmost index... used to keep track of the equal-to partition
+        int n = right; //n = the rightmost index... used to keep track of the equal-to partition
         int j = left + 1;
         for (int i = left + 1; i <= n; i++) {
             if (arr[i] < pivot) {
@@ -97,6 +97,7 @@ public class Sorting {
         else {
             resultArr[0] = j - 1;
         }
+        //resultArr[0] = the rightmost index of the less-than partition
 
         temp = arr[left];
         arr[left] = arr[j];
@@ -110,7 +111,7 @@ public class Sorting {
             j++;
         }
 
-        resultArr[1] = j;
+        resultArr[1] = j; //the leftmost index of the greater-than partition
         return resultArr;
     }
     //END THREE-WAY PARTITION METHOD
