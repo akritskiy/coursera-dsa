@@ -1,15 +1,16 @@
 //Design a quick sort algorithm to efficiently process arrays with few unique elements.
 
-//Begin with a naive quick sort algorithm, using a two-way partition. At best (with balanced partitions), the running time
-//of this algorithm is O(nlogn). At worst, e.g. if all of the elements in the array are the same element, the running time is O(n^2).
-//Implement a partition method that separates elements into three partitions: less than, equal to, and greater than pivot.
+//Begin with a "naive" quick sort algorithm, using a two-way partition. At best (with balanced partitions), 
+//the running time of this algorithm is O(nlogn). At worst (e.g. if all of the elements in the array are
+//the same element), the running time is O(n^2). Implement a partition method that separates elements into
+//three partitions: less than, equal to, and greater than pivot.
 
 import java.util.*;
 
 public class Sorting {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-
+        
         int n = input.nextInt();
         int[] arr = new int[n];
         for (int i = 0; i < n; i++) {
@@ -22,7 +23,7 @@ public class Sorting {
             System.out.print(arr[i] + " ");
         }
 
-        // //TEST
+        // //Test
         // int n = (int)(Math.random() * 20 + 1);
         // int[] a = new int[n];
         // for (int i = 0; i < n; i++) {
@@ -39,7 +40,7 @@ public class Sorting {
         // Arrays.sort(copy);
         // System.out.println("Copy, sorted by Arrays.sort: ");
         // System.out.println(Arrays.toString(copy));
-        // //END TEST
+        // //End test
     }
     
     //QUICK SORT METHOD
@@ -65,55 +66,56 @@ public class Sorting {
     }
 
     private static int[] partition(int[] arr, int left, int right) {
-        int[] resultArr = {0, 0};
+        int[] resultArr = new int[2]; //Initialize result array
 
-        //Randomize pivot...
-        int k = (int)(Math.random() * (right - left + 1) + left);
+        //Randomize pivot
+        int r = (int)(Math.random() * (right - left + 1) + left);
         int temp = arr[left];
-        arr[left] = arr[k];
-        arr[k] = temp;
+        arr[left] = arr[r];
+        arr[r] = temp;
+        //End randomize pivot
+        
         int pivot = arr[left];
-
-        int n = right; //n = the rightmost index... used to keep track of the equal-to partition
+        int k = right;
         int j = left + 1;
-        for (int i = left + 1; i <= n; i++) {
+        for (int i = left + 1; i <= k; i++) {
             if (arr[i] < pivot) {
                 temp = arr[j];
                 arr[j] = arr[i];
                 arr[i] = temp;
                 j++;
             }
-            else if (arr[i] == pivot) {
-                temp = arr[n];
-                arr[n] = arr[i];
+            else if (arr[i] > pivot) {
+                temp = arr[k];
+                arr[k] = arr[i];
                 arr[i] = temp;
-                n--;
+                k--;
                 i--;
             }
         }
         j--;
-
-        if (j == 0) {
+        k++;
+        
+        temp = arr[left];
+        arr[left] = arr[j];
+        arr[j] = temp;
+        
+        if (j <= 0) {
             resultArr[0] = 0;
         }
         else {
             resultArr[0] = j - 1;
         }
-        //resultArr[0] = the rightmost index of the less-than partition
-
-        temp = arr[left];
-        arr[left] = arr[j];
-        arr[j] = temp;
-
-        j++;
-        for (int i = right; i > n; i--) {
-            temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-            j++;
+        //resultArr[0] is set to j, which is the rightmost index of the less-than partition
+        
+        if (k >= right) {
+            resultArr[1] = right;
         }
-
-        resultArr[1] = j; //the leftmost index of the greater-than partition
+        else {
+            resultArr[1] = k;
+        }
+        //resultArr[1] is set to k, which is the leftmost index of the greater-than partition
+        
         return resultArr;
     }
     //END THREE-WAY PARTITION METHOD
