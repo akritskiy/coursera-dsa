@@ -37,6 +37,7 @@ public class Sorting {
         // Arrays.sort(copy);
         // System.out.println("Copy, sorted by Arrays.sort: ");
         // System.out.println(Arrays.toString(copy));
+        // //END TEST
     }
     
     //QUICK SORT METHOD
@@ -54,6 +55,7 @@ public class Sorting {
         quickSort(arr, m[1], right);
         return arr;
     }
+    //END QUICK SORT METHOD
     
     //THREE-WAY PARTITION METHOD
     private static int[] partition(int[] arr) {
