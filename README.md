@@ -12,3 +12,4 @@ A selection of problems from the Data Structures and Algorithms Specialization f
   - Week 4, Divide and Conquer Algorithms
     - [MajorityElement.java](https://github.com/akritskiy/coursera-dsa/blob/master/MajorityElement.java)
     - [Sorting.java](https://github.com/akritskiy/coursera-dsa/blob/master/Sorting.java)
+    - [Inversions.java](https://github.com/akritskiy/coursera-dsa/blob/master/Inversions.java)
