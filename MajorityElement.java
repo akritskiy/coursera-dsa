@@ -1,6 +1,8 @@
 //Given an array of n elements, determine if the array contains an element that occurs more than n/2 times.
 //Design a divide-and-conquer O(nlog(n)) algorithm.
 
+//The feedback for this solution was: Good job! (Max time used: 0.98/1.50, max memory used: 118337536/536870912.)
+
 import java.util.*;
 
 public class MajorityElement {
