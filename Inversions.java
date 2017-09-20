@@ -1,7 +1,11 @@
 //The goal of this problem is to count the number of inversions of a given sequence.
-//For example, an array sorted in ascending order contains no inversions, while in an
-//array sorted in descending order, any two elements constitute an inversion, for a
-//total of n * (n - 1) / 2 inversions.
+//This number is a measure of how close the sequence is to being sorted. For example,
+//an array sorted in ascending order contains no inversions, while an array sorted in
+//descending order contains n * (n - 1) / 2 inversions.
+
+//The constaints were that n could be as large as 10^5, and the integers in the sequence
+//could be as large as 10^9. In the worst case, the number of inversions could be
+//4,999,950,000. Therefore, the number of inversions must be stored in a long datatype.
 
 //The solution is a modification of the merge sort algorithm.
 
