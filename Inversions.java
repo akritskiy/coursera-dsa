@@ -1,15 +1,17 @@
 //The goal of this problem is to count the number of inversions of a given sequence.
-//This number is a measure of how close the sequence is to being sorted. For example,
-//an array sorted in ascending order contains no inversions, while an array sorted in
-//descending order contains n * (n - 1) / 2 inversions.
+//An inversion of a sequence a0, a1, ... , an is a pair of indices 0 <= i < j <= n
+//such that ai > aj. The number of inversions in some sense measures how close the
+//sequence is to being sorted. For example, the array {2, 1} contains one inversion,
+//and the array {3, 1, 2} contains two inversions. An array that is already sorted
+//in ascending order contains zero inversions, and an array sorted in descending order
+//contains n * (n - 1) / 2 inversions.
 
-//The constaints were that n could be as large as 10^5, and the integers in the sequence
-//could be as large as 10^9. In the worst case, the number of inversions could be
-//4,999,950,000. Therefore, the number of inversions must be stored in a long datatype.
+//The constaints: n can be as large as 10^5, and each ai can be as large as 10^9.
+//In the worst case, the number of inversions could be 4,999,950,000. Therefore, the
+//number of inversions must be stored in a long datatype.
 
-//The solution is a modification of the merge sort algorithm.
-
-//The feedback for this solution was: Good job! (Max time used: 0.99/4.50, max memory used: 137515008/536870912.)
+//The solution is a modification of the merge sort algorithm. The feedback for this solution was:
+//Max time used: 0.99/4.50, max memory used: 137515008/536870912.
 
 import java.util.*;
 
@@ -67,6 +69,25 @@ public class Inversions {
 		// 	}
 		// }
 		// //END STRESS TEST
+	}
+	
+	//A datatype to store an array and the inversion count. Named "Data" for lack of
+	//a more creative name...
+	private static class Data {
+		private int[] array = {};
+		private long count = 0;
+
+		private Data() {}
+
+		private Data(int[] array, long count) {
+			this.array = array;
+			this.count = count;
+		}
+
+		private Data(int arrayLength, long count) {
+			this.array = new int[arrayLength];
+			this.count = count;
+		}
 	}
 
 	private static Data mergeSort(int[] arr) {
@@ -141,34 +162,16 @@ public class Inversions {
 		}
 	}
 
-	//A datatype to contain an array and the inversion count.
-	private static class Data {
-		private int[] array = {};
-		private long count = 0;
-
-		private Data() {}
-
-		private Data(int[] array, long count) {
-			this.array = array;
-			this.count = count;
-		}
-
-		private Data(int arrayLength, long count) {
-			this.array = new int[arrayLength];
-			this.count = count;
-		}
-	}
-
 	//Identical method: compares two arrays... returns true if identical, false otherwise.
 	//Used to test the sorting function of mergeSort.
-	private static boolean identical(int[] a, int[] b) {
-		boolean verdict = true;
-		for (int i = 0; i < a.length; i++) {
-			if (a[i] != b[i]) {
-				verdict = false;
-				break;
-			}
-		}
-		return verdict;
-	}
+	// private static boolean identical(int[] a, int[] b) {
+	// 	boolean verdict = true;
+	// 	for (int i = 0; i < a.length; i++) {
+	// 		if (a[i] != b[i]) {
+	// 			verdict = false;
+	// 			break;
+	// 		}
+	// 	}
+	// 	return verdict;
+	// }
 }
