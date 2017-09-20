@@ -6,7 +6,7 @@
 //in ascending order contains zero inversions, and an array sorted in descending order
 //contains n * (n - 1) / 2 inversions.
 
-//The constaints: n can be as large as 10^5, and each ai can be as large as 10^9.
+//The constraints: n can be as large as 10^5, and each ai can be as large as 10^9.
 //In the worst case, the number of inversions could be 4,999,950,000. Therefore, the
 //number of inversions must be stored in a long datatype.
 
