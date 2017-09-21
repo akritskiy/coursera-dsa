@@ -5,7 +5,7 @@
 //the same element), the running time is O(n^2). Implement a partition method that separates elements into
 //three partitions: less than, equal to, and greater than pivot.
 
-//The feedback for this solution was: Good job! (Max time used: 1.72/5.50, max memory used: 136478720/536870912.)
+//The feedback for this solution was: Max time used: 1.72/5.50, max memory used: 136478720/536870912.
 
 import java.util.*;
 
