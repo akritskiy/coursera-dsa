@@ -136,67 +136,67 @@ public class PointsAndSegments {
 		//randomize pivot
 		int random = (int)(Math.random() * (right - left + 1) + left);
 		Pair temp = arr[left];
-        arr[left] = arr[random];
-        arr[random] = temp;
+		arr[left] = arr[random];
+		arr[random] = temp;
 
-        //sort
-        Pair pivot = arr[left];
-        int k = right;
-        int j = left + 1;
-        for (int i = left + 1; i <= k; i++) {
-        	if (arr[i].point < pivot.point) {
-        		temp = arr[j];
-        		arr[j] = arr[i];
-        		arr[i] = temp;
-        		j++;
-        	}
-        	else if (arr[i].point == pivot.point) {
-        		if (arr[i].label < pivot.label) {
-        			temp = arr[j];
-	        		arr[j] = arr[i];
-	        		arr[i] = temp;
-	        		j++;
-        		}
-        		else if (arr[i].label > pivot.label) {
-        			temp = arr[k];
-	        		arr[k] = arr[i];
-	        		arr[i] = temp;
-	        		k--;
-	        		i--;
-        		}
-        	}
-        	else if (arr[i].point > pivot.point) {
-        		temp = arr[k];
-        		arr[k] = arr[i];
-        		arr[i] = temp;
-        		k--;
-        		i--;
-        	}
-        }
-        j--;
-        k++;
+		//sort
+		Pair pivot = arr[left];
+		int k = right;
+		int j = left + 1;
+		for (int i = left + 1; i <= k; i++) {
+			if (arr[i].point < pivot.point) {
+				temp = arr[j];
+				arr[j] = arr[i];
+				arr[i] = temp;
+				j++;
+			}
+			else if (arr[i].point == pivot.point) {
+				if (arr[i].label < pivot.label) {
+					temp = arr[j];
+					arr[j] = arr[i];
+					arr[i] = temp;
+					j++;
+				}
+				else if (arr[i].label > pivot.label) {
+					temp = arr[k];
+					arr[k] = arr[i];
+					arr[i] = temp;
+					k--;
+					i--;
+				}
+			}
+			else if (arr[i].point > pivot.point) {
+				temp = arr[k];
+				arr[k] = arr[i];
+				arr[i] = temp;
+				k--;
+				i--;
+			}
+		}
+		j--;
+		k++;
 
-        //move pivot to its final place within the array
-        temp = arr[left];
-        arr[left] = arr[j];
-        arr[j] = temp;
+		//move pivot to its final place within the array
+		temp = arr[left];
+		arr[left] = arr[j];
+		arr[j] = temp;
 
-        //store and return the indices of the equals partition
-        if (j <= 0) {
-        	result[0] = 0;
-        }
-        else {
-        	result[0] = j - 1;
-        }
+		//store and return the indices of the equals partition
+		if (j <= 0) {
+			result[0] = 0;
+		}
+		else {
+			result[0] = j - 1;
+		}
 
-        if (k >= right) {
-        	result[1] = right;
-        }
-        else {
-        	result[1] = k;
-        }
+		if (k >= right) {
+			result[1] = right;
+		}
+		else {
+			result[1] = k;
+		}
 
-        return result;
+		return result;
 	}
 	//End sort method
 
