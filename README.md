@@ -10,6 +10,7 @@ A selection of problems from the Data Structures and Algorithms Specialization f
     - [Covering Segments](https://github.com/akritskiy/coursera-dsa/blob/master/CoveringSegments.java?ts=4)
     - [Largest Number](https://github.com/akritskiy/coursera-dsa/blob/master/LargestNumber.java?ts=4)
   - Divide and Conquer Algorithms
+    - [Binary Search](https://github.com/akritskiy/coursera-dsa/blob/master/BinarySearch.java?ts=4)
     - [Majority Element](https://github.com/akritskiy/coursera-dsa/blob/master/MajorityElement.java?ts=4)
     - [Sorting an Array with Few Unique Elements - Quick Sort with a Three-way Partition](https://github.com/akritskiy/coursera-dsa/blob/master/Sorting.java?ts=4)
     - [Number of Inversions - Using Modified Merge Sort](https://github.com/akritskiy/coursera-dsa/blob/master/Inversions.java?ts=4)
