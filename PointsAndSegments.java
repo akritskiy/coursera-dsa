@@ -14,7 +14,7 @@ not found in either of the segments.
 
 2. Given segment (-10, 10) and points {-100, 100, 0}, the output is 0 0 1.
 
-3. Given segments {(0, 5), (-3, 2), (7, 10)} and points {7, 10}, the output is 2 0.
+3. Given segments {(0, 5), (-3, 2), (7, 10)} and points {1, 6}, the output is 2 0.
 
 The strategy used here was to label each start with a 1, each end with a 3, and each point with a 2.
 These point-label pairs were sorted first by the point, and where the point values were equal, they
