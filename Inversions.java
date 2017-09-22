@@ -15,197 +15,173 @@
 
 import java.util.*;
 
-public class PointsAndSegments {
+public class Inversions {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		
-		int s = input.nextInt(); //Number of segments
-		int[] starts = new int[s];
-		int[] ends = new int[s];
-		int p = input.nextInt(); //Number of points
-		int[] points = new int[p];
-		
-		for (int i = 0; i < s; i++) {
-			starts[i] = input.nextInt();
-			ends[i] = input.nextInt();
-		}
-
-		for (int i = 0; i < p; i++) {
-			points[i] = input.nextInt();
-		}
-
-		int[] result = count(starts, ends, points);
-		for (int i = 0; i < p; i++) {
-			System.out.print(result[i] + " ");
-		}
-	}
-
-	private static int[] count(int[] starts, int[] ends, int[] points) {
-		int s = starts.length; 	//Number of segments
-		int p = points.length; 	//Number of points
-		int n = 2 * s + p; 		//Number of point-label pairs
-
-		Pair[] pairs = new Pair[n];
-		int j = 0;
-
-		//the pairs will be labeled 1 for start, 2 for point, 3 for end
-		for (int i = 0; i < s; i++) {
-			pairs[j] = new Pair(starts[i], 1);
-			j++;
-			pairs[j] = new Pair(ends[i], 3);
-			j++;
-		}
-
-		for (int i = 0; i < p; i++) {
-			pairs[j] = new Pair(points[i], 2);
-			j++;
-		}
-		//At this point, pairs contains all the point-label pairs
-
-		quickSort(pairs);
-
-		//Need a new arr to store each point in points, and the count for that point... point-count pairs
-		Pair[] counts = new Pair[p];
-		int k = 0;
-		int leftCount = 0;
-		int rightCount = 0;
-
+		int n = input.nextInt();
+		int[] a = new int[n];
 		for (int i = 0; i < n; i++) {
-			if (pairs[i].label == 1) {
-				leftCount++;
-			}
-			else if (pairs[i].label == 3) {
-				rightCount++;
-			}
-			else if (pairs[i].label == 2) {
-				int point = pairs[i].point;
-				int count = leftCount - rightCount;
-				counts[k] = new Pair(point, 0, count);
-				k++;
-			}
+			a[i] = input.nextInt();
 		}
-		//At this point, counts array contains the point-count pairs
+		Data x = mergeSort(a);
+		System.out.println(x.count);
 
-		//This will map the count for each point back to its index in the points array
-		int[] result = new int[p];
-		for (int i = 0; i < p; i++) {
-			for (int m = 0; m < p; m++) {
-				if (points[i] == counts[m].point) {
-					result[i] = counts[m].count;
-				}
-			}
-		}
+		// //Simple test for counting inversions, using an array sorted in descending order...
+		// //The number of inversions should be n * (n - 1) / 2.
+		// int n = 10; //change to test different array sizes
+		// int[] a = new int[n];
+		// for (int i = 0; i < n; i++) {
+		// 	a[i] = (int)(Math.random() * 10 + 1); //change the 10 to do different tests
+		// }
+		// Arrays.sort(a);
+		
+		// int[] b = new int[n];
+		// for (int i = 0; i < n; i++) {
+		// 	b[i] = a[n - 1 - i];
+		// }
+		// //We now have array b sorted in descending order...
+		// Data x = mergeSort(b);
+		// System.out.println(Arrays.toString(x.array)); //one of the instructions of the
+		// //challenge is that the method should return the sorted array
+		// System.out.println(x.count);
+		// int numInversions = n * (n - 1) / 2;
+		// if (numInversions == x.count) {
+		// 	System.out.println("Correct");
+		// }
+		// else {
+		// 	System.out.println("Wrong");
+		// }
+		// //End simple test
 
-		return result;
+		// //Stress test, for sorting function. Does not test counting of inversions.
+		// while (true) {
+		// 	int n = (int)(Math.random() * 10 + 1);
+		// 	int[] a = new int[n];
+		// 	for (int i = 0; i < n; i++) {
+		// 		a[i] = (int)(Math.random() * 1000000000 + 1);
+		// 	}
+		
+		// 	//use mergeSort
+		// 	Data x = mergeSort(a);
+		// 	int[] b = x.array;
+		
+		// 	//sort a using Arrays.sort
+		// 	Arrays.sort(a);
+		
+		// 	System.out.println("Array a: " + Arrays.toString(a));
+		// 	System.out.println("Array b: " + Arrays.toString(b));
+
+		// 	if (identical(a, b)) {
+		// 		System.out.println("Correct");
+		// 	}
+		// 	else {
+		// 		System.out.println("Wrong");
+		// 		break;
+		// 	}
+		// }
+		// //End stress test
 	}
 
-	//Begin sort method
-	private static Pair[] quickSort(Pair[] arr) {
-		return quickSort(arr, 0, arr.length - 1);
-	}
+	//A datatype to contain an array and the inversion count.
+	private static class Data {
+		private int[] array = {};
+		private long count = 0;
 
-	private static Pair[] quickSort(Pair[] arr, int left, int right) {
-		if (left >= right) {
-			return arr;
+		private Data() {}
+
+		private Data(int[] array, long count) {
+			this.array = array;
+			this.count = count;
 		}
 
-		int[] m = partition(arr, left, right);
-		quickSort(arr, left, m[0]);
-		quickSort(arr, m[1], right);
-		return arr;
-	}
-
-	private static int[] partition(Pair[] arr, int left, int right) {
-		int[] result = {0, 0}; //initialize result arr
-
-		//randomize pivot
-		int random = (int)(Math.random() * (right - left + 1) + left);
-		Pair temp = arr[left];
-		arr[left] = arr[random];
-		arr[random] = temp;
-
-        //sort
-		Pair pivot = arr[left];
-		int k = right;
-		int j = left + 1;
-		for (int i = left + 1; i <= k; i++) {
-			if (arr[i].point < pivot.point) {
-				temp = arr[j];
-				arr[j] = arr[i];
-				arr[i] = temp;
-				j++;
-			}
-			else if (arr[i].point == pivot.point) {
-				if (arr[i].label < pivot.label) {
-					temp = arr[j];
-					arr[j] = arr[i];
-					arr[i] = temp;
-					j++;
-				}
-				else if (arr[i].label > pivot.label) {
-					temp = arr[k];
-					arr[k] = arr[i];
-					arr[i] = temp;
-					k--;
-					i--;
-				}
-			}
-			else if (arr[i].point > pivot.point) {
-				temp = arr[k];
-				arr[k] = arr[i];
-				arr[i] = temp;
-				k--;
-				i--;
-			}
-		}
-		j--;
-		k++;
-
-        //move pivot to its final place within the array
-		temp = arr[left];
-		arr[left] = arr[j];
-		arr[j] = temp;
-
-        //store and return the indices of the equals partition
-		if (j <= 0) {
-			result[0] = 0;
-		}
-		else {
-			result[0] = j - 1;
-		}
-
-		if (k >= right) {
-			result[1] = right;
-		}
-		else {
-			result[1] = k;
-		}
-
-		return result;
-	}
-	//End sort method
-
-	//point-label pair
-	private static class Pair {
-		private int point, label, count;
-
-		private Pair(int point, int label) {
-			this.point = point;
-			this.label = label;
-		}
-
-		private Pair(int point, int label, int count) {
-			this.point = point;
-			this.label = label;
+		private Data(int arrayLength, long count) {
+			this.array = new int[arrayLength];
 			this.count = count;
 		}
 	}
 
-	//print pair[] method, for testing
-	private static void printPairArr(Pair[] arr) {
-		int n = arr.length;
-		for (int i = 0; i < n; i++) {
-			System.out.println("Index: " + i + ", point, label: " + arr[i].point + ", " + arr[i].label);
+	private static Data mergeSort(int[] arr) {
+		return mergeSort(arr, 0, arr.length - 1);
+	}
+
+	private static Data mergeSort(int[] arr, int left, int right) {
+		Data result = new Data();
+
+		if (left == right) {
+			result.array = new int[1];
+			result.array[0] = arr[left];
+			return result;
 		}
+
+		int mid = (right + left) / 2;
+
+		Data leftHalf = mergeSort(arr, left, mid);
+		int[] leftArr = leftHalf.array;
+		result.count += leftHalf.count;
+
+		Data rightHalf = mergeSort(arr, mid + 1, right);
+		int[] rightArr = rightHalf.array;
+		result.count += rightHalf.count;
+
+		Data merged = merge(leftArr, rightArr);
+		result.array = merged.array;
+		result.count += merged.count;
+
+		return result;
+	}
+
+	private static Data merge(int[] a, int[] b) {
+		Data data = new Data(a.length + b.length, 0);
+
+		int i = 0, j = 0, k = 0;
+		while (true) {
+			if (a[i] < b[j]) {
+				data.array[k] = a[i];
+				i++;
+				k++;
+			}
+			else if (a[i] > b[j]) {
+				data.count += a.length - i;
+				data.array[k] = b[j];
+				j++;
+				k++;
+			}
+			else if (a[i] == b[j]) {
+				data.array[k] = a[i];
+				i++;
+				k++;
+			}
+
+			if (i == a.length) {
+				while (j < b.length) {
+					data.array[k] = b[j];
+					j++;
+					k++;
+				}
+				return data;
+			}
+
+			if (j == b.length) {
+				while (i < a.length) {
+					data.array[k] = a[i];
+					i++;
+					k++;
+				}
+				return data;
+			}
+		}
+	}
+
+	// Identical method: compares two arrays. Returns true if identical, false otherwise.
+	// Used to test the sorting function of mergeSort.
+	private static boolean identical(int[] a, int[] b) {
+		boolean verdict = true;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != b[i]) {
+				verdict = false;
+				break;
+			}
+		}
+		return verdict;
 	}
 }
