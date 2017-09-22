@@ -16,7 +16,16 @@ not found in either of the segments.
 
 3. Given segments {(0, 5), (-3, 2), (7, 10)} and points {7, 10}, the output is 2 0.
 
-The feedback for this solution was: Max time used: 4.88/6.00, max memory used: 168296448/536870912.
+The strategy used here was to label each start with a 1, each end with a 3, and each point with a 2.
+These point-label pairs were sorted first by the point, and where the point values were equal, they
+were sorted by the label. Take example 2 from above... The array of point-label pairs is
+{ (-10, 1), (10, 3), (-100, 2), (100, 2), (0, 2) } ... and when sorted:
+{ (-100, 2), (-10, 1), (0, 2), (10, 3), (100, 2) }. We then iterate through this array. Each time we
+see the label 1, we increment the start count... label 3, increment end count, and label 2... we save
+a point-count pair in a new array. The count for that point will be (start count - end count). All
+that remains is to map the count for each point back to the correct index in the original points array.
+
+The feedback for this solution was: "Good job!" and Max time used: 4.88/6.00, max memory used: 168296448/536870912.
 */
 
 import java.util.*;
