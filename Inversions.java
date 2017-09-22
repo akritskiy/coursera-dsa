@@ -28,13 +28,12 @@ public class Inversions {
 
 		// //Simple test for counting inversions, using an array sorted in descending order...
 		// //The number of inversions should be n * (n - 1) / 2.
-		// int n = 10; //change to test different array sizes
+		// int n = (int)(Math.random() * 1000 + 1);
 		// int[] a = new int[n];
-		// for (int i = 0; i < n; i++) {
-		// 	a[i] = (int)(Math.random() * 10 + 1); //change the 10 to do different tests
+		// a[0] = (int)(Math.random() * 1000 + 1);
+		// for (int i = 1; i < n; i++) {
+		// 	a[i] = a[i - 1] + 1;
 		// }
-		// Arrays.sort(a);
-		
 		// int[] b = new int[n];
 		// for (int i = 0; i < n; i++) {
 		// 	b[i] = a[n - 1 - i];
