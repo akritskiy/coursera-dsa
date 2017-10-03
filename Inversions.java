@@ -1,17 +1,16 @@
-//The goal of this problem is to count the number of inversions of a given sequence.
-//An inversion of a sequence a0, a1, ... , an is a pair of indices 0 <= i < j <= n
-//such that ai > aj. The number of inversions in some sense measures how close the
-//sequence is to being sorted. For example, the array {2, 1} contains one inversion,
-//and the array {3, 1, 2} contains two inversions. An array that is already sorted
-//in ascending order contains zero inversions, and an array sorted in descending order
-//contains n * (n - 1) / 2 inversions.
+/*The goal of this problem is to count the number of inversions of a given sequence (array).
 
-//The constraints: n can be as large as 10^5, and each ai can be as large as 10^9.
-//In the worst case, the number of inversions could be 4,999,950,000. Therefore, the
-//number of inversions must be stored in a long datatype.
+An inversion is: any two elements in an array such that array[i] > array[i + 1]. For example, the array {2, 1} contains
+one inversion. If the inversion is performed, the resulting array {1, 2} is sorted in ascending order. The array {3, 1, 2}
+contains two inversions. An array that is already sorted contains zero inversions, and an array sorted in descending order
+contains n * (n - 1) / 2 inversions.
 
-//The solution is a modification of the merge sort algorithm. The feedback for this solution was:
-//Max time used: 0.99/4.50, max memory used: 137515008/536870912.
+Array length can be as large as 10^5, and each ai can be as large as 10^9. In the worst case, the number of inversions can
+be 4,999,950,000, so the number of inversions should be stored in a long datatype.
+
+The solution is a modification of the merge sort algorithm. The feedback for this solution was:
+Good job! (Max time used: 0.99/4.50, max memory used: 137515008/536870912.)
+*/
 
 import java.util.*;
 
