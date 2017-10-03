@@ -1,31 +1,20 @@
 /*
-Given a set of points and a set of segments, the goal is to compute, for each point, the number of
-segments that contain this point.
+Given a set of points and a set of segments, the goal is to compute, for each point, the number of segments that contain the point.
 
-The number of segments {(a0, b0), (a1, b1), ..., (as-1, bs-1)} and points {x0, x1, ..., xp-1} can
-each be as large as 50,000. Each point and segment endpoint can range from -10^8 to 10^8.
+The number of segments and points can each be as large as 50,000. Each point and segment endpoint can range from -10^8 to 10^8.
 
-Output p integers {k0, k1, ..., kp-1} where each ki is the number of segments which contain xi.
+Example 1: Given segments (0, 5) and (7, 10) and points {1, 6, 11}, the output is 1 0 0.
+Explanation: The first point, 1, is found once, in the 1st segment. The others, 6 and 11, are not found in either of the segments.
 
-For example:
-1. Given segments (0, 5) and (7, 10) and points {1, 6, 11}, the output is 1 0 0.
-Explanation: The first point, 1, is found once, in the 1st segment. The others, 6 and 11, are
-not found in either of the segments.
+Example 2: Given segment (-10, 10) and points {-100, 100, 0}, the output is 0 0 1.
 
-2. Given segment (-10, 10) and points {-100, 100, 0}, the output is 0 0 1.
+The strategy is to label the start and end of each segment with a 1 and 3, respectively, and each point with a 2. These point-label
+pairs are then sorted by the point, and where the point values are equal, they are sorted by the label. We then iterate through this
+array. Each time we see a label = 1, we increment the start count; label = 3, increment the end count; and label = 2, we save a
+point-count pair in a new array. The count for that point is the current start count - end count. The counts are then mapped back
+to the appropriate position in the original points array.
 
-3. Given segments {(0, 5), (-3, 2), (7, 10)} and points {1, 6}, the output is 2 0.
-
-The strategy used here was to label each start with a 1, each end with a 3, and each point with a 2.
-These point-label pairs were sorted first by the point, and where the point values were equal, they
-were sorted by the label. Take example 2 from above... The array of point-label pairs is
-{ (-10, 1), (10, 3), (-100, 2), (100, 2), (0, 2) } ... and when sorted:
-{ (-100, 2), (-10, 1), (0, 2), (10, 3), (100, 2) }. We then iterate through this array. Each time we
-see the label 1, we increment the start count... label 3, increment end count, and label 2... we save
-a point-count pair in a new array. The count for that point will be (start count - end count). All
-that remains is to map the count for each point back to the correct index in the original points array.
-
-The feedback for this solution was: "Good job!" and Max time used: 4.88/6.00, max memory used: 168296448/536870912.
+The feedback for this solution was: Good job! (Max time used: 4.88/6.00, max memory used: 168296448/536870912.)
 */
 
 import java.util.*;
