@@ -1,11 +1,10 @@
 //Design a quick sort algorithm to efficiently process arrays with few unique elements.
 
-//Begin with a "naive" quick sort algorithm, using a two-way partition. At best (with balanced partitions), 
-//the running time of this algorithm is O(nlogn). At worst (e.g. if all of the elements in the array are
-//the same element), the running time is O(n^2). Implement a partition method that separates elements into
-//three partitions: less than, equal to, and greater than pivot.
+//Quick sort, at best (with balanced partitions), runs in O(nlogn) time; at worst (e.g. if all of the elements
+//in the array are the same element), it runs in O(n^2) time. Implement a partition method that separates elements
+//into three partitions: less than, equal to, and greater than the pivot.
 
-//The feedback for this solution was: Max time used: 1.72/5.50, max memory used: 136478720/536870912.
+//The feedback for this solution was: Good job! (Max time used: 1.72/5.50, max memory used: 136478720/536870912.)
 
 import java.util.*;
 
