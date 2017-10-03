@@ -22,6 +22,8 @@ Output:
 180.0
 Explanation: the value per weight ratios of the items are 3, 2, and 4, respectively, so we take the first
 and third item.
+
+The feedback for this solution was: Good job! (Max time used: 0.31/1.50, max memory used: 35745792/671088640.)
 */
 
 import java.util.Scanner;
