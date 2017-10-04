@@ -1,3 +1,12 @@
+/*
+Given the schedule of each person in your building, find the most efficient way to see all of them to get a
+signature for a petition. This is modeled by a set of segments. Each segment represents the time slot when
+a person is at home. The goal is to select as few points as possible, while covering each segment (still
+visiting each person).
+
+The feedback for this solution was: Good job! (Max time used: 0.21/1.50, max memory used: 26877952/536870912.)
+*/
+
 import java.util.*;
 
 public class CoveringSegments {
@@ -24,55 +33,54 @@ public class CoveringSegments {
         int[] result = optimalPoints(segments);
         int m = result.length;
         
-        //Print
+        //Output
         System.out.println(m);
-        for (int i=0; i<m; i++) {
+        for (int i = 0; i < m; i++) {
             System.out.print(result[i] + " ");
         }
     }
 
     //Optimal points method
     private static int[] optimalPoints(Segment[] segments) {
-        int n = segments.length; //Initialize n.
-        //n will be the scope of the method. When it is determined that a point covers a segment, that segment will be moved outside the scope
-        
-        sortSegments(segments, n); //To begin, sort the array
+        int n = segments.length;
+        sortSegments(segments, n);
 
-        int[] points = new int[n]; //Declare points array, which will store our points, and initialize numPoints
+        int[] points = new int[n];
         int numPoints = 0;
 
         while (n > 0) {
-            int point = segments[0].end; //Select the end point of the left-most segment (if viewed on a number line, 0...1...2...etc.)
+            //Select the end point of the left-most segment (if viewed on a number line, 0...1...2...etc.)
+            int point = segments[0].end;
             points[numPoints] = point;
             numPoints++;
-
-            for (int j=0; j<n; j++) { //Check each segment
+            
+            //Check segments
+            for (int j = 0; j < n; j++) {
                 if (point >= segments[j].start && point <= segments[j].end) {
-                    //If the point lies on the segment, the segment is moved outside the scope, and the segment at index n-1 takes its place
                     Segment temp = segments[n-1];
                     segments[n-1] = segments[j];
                     segments[j] = temp;
-                    n--; //Shorten the scope
-                    j--; //Decrement j to check the new segment at index j
+                    n--;
+                    j--;
                 }
             }
-            sortSegments(segments, n); //Re-sort the segments array, but only within the scope
+            sortSegments(segments, n);
         }
 
         //Clean up the points array
         int[] result = new int[numPoints];
-        for (int i=0; i<numPoints; i++) {
+        for (int i = 0; i < numPoints; i++) {
             result[i] = points[i];
         }
         return result;
     }
 
-    //Sort the segments array by end point (least to greatest), index range [0, n-1]
+    //Sort the segments array by end point (least to greatest)
     private static void sortSegments(Segment[] arr, int n) {
-        for (int i=0; i<n-1; i++) {
+        for (int i = 0; i < n - 1; i++) {
             int min = arr[i].end;
             int minIndex = i;
-            for (int j=i+1; j<n; j++) {
+            for (int j = i + 1; j < n; j++) {
                 if (min > arr[j].end) {
                     min = arr[j].end;
                     minIndex = j;
