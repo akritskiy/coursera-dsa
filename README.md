@@ -20,3 +20,4 @@ A selection of problems from the Coursera Data Structures and Algorithms Special
     - [Points and Segments](https://github.com/akritskiy/coursera-dsa/blob/master/PointsAndSegments.java?ts=4)
   - Dynamic Programming
     - [Primitive Calculator](https://github.com/akritskiy/coursera-dsa/blob/master/PrimitiveCalculator.java?ts=4)
+    - [Knapsack Without Repetition](https://github.com/akritskiy/coursera-dsa/blob/master/Knapsack.java?ts=4)
