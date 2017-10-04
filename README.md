@@ -18,3 +18,5 @@ A selection of problems from the Coursera Data Structures and Algorithms Special
     - [Sorting an Array with Few Unique Elements - Quick Sort with a Three-way Partition](https://github.com/akritskiy/coursera-dsa/blob/master/Sorting.java?ts=4)
     - [Number of Inversions - Modified Merge Sort](https://github.com/akritskiy/coursera-dsa/blob/master/Inversions.java?ts=4)
     - [Points and Segments](https://github.com/akritskiy/coursera-dsa/blob/master/PointsAndSegments.java?ts=4)
+  - Dynamic Programming
+    - [Primitive Calculator](https://github.com/akritskiy/coursera-dsa/blob/master/PrimitiveCalculator.java?ts=4)
