@@ -4,6 +4,15 @@ n = the number of items (in our story, the items were gold bars), and an array w
 of each item, maximize the value that can fit into the backpack. Each item can only be taken
 once, and it isn't possible to take a fraction of an item.
 
+For example:
+Input:
+7 4
+6 3 4 2
+Output:
+7
+Explanation: the greedy strategy would output a 6, which is incorrect... The value of the backpack
+is maximized by skipping over the largest item and taking the items of weight 3 and 4.
+
 The feedback for this solution was:
 Good job! (Max time used: 0.28/2.25, max memory used: 41947136/536870912.)
 */
