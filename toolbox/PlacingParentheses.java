@@ -121,7 +121,7 @@ public class PlacingParentheses {
 		int i, j;
 		for (i = 0; i < length; i++) {
 			if (i % 2 == 0) {
-				j = (int)(Math.random() * 9 + 1); //digits 1 through 9
+				j = (int)(Math.random() * 10); //digits 0 through 9
 				chars[i] = (char)(j + '0');
 			}
 			else {
