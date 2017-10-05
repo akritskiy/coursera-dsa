@@ -12,7 +12,7 @@ A selection of problems from the Coursera Data Structures and Algorithms Special
     - [Fractional Knapsack](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/FractionalKnapsack.java?ts=4)
     - [Optimal Points to Cover Segments](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/CoveringSegments.java?ts=4)
     - [Largest Number](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/LargestNumber.java?ts=4)
-  - Divide and Conquer Algorithms
+  - Divide and Conquer
     - [Binary Search](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/BinarySearch.java?ts=4)
     - [Majority Element](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/MajorityElement.java?ts=4)
     - [Sorting an Array with Few Unique Elements - Quick Sort with a Three-way Partition](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/Sorting.java?ts=4)
