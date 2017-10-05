@@ -22,3 +22,4 @@ A selection of problems from the Coursera Data Structures and Algorithms Special
     - [Primitive Calculator](https://github.com/akritskiy/coursera-dsa/blob/master/PrimitiveCalculator.java?ts=4)
     - [Knapsack Without Repetition](https://github.com/akritskiy/coursera-dsa/blob/master/Knapsack.java?ts=4)
     - [Edit Distance Between Two Strings](https://github.com/akritskiy/coursera-dsa/blob/master/EditDistance.java?ts=4)
+    - [Maximize the Value of a Mathematical Expression by Placing Parentheses](https://github.com/akritskiy/coursera-dsa/blob/master/PlacingParentheses.java?ts=4)
