@@ -1,6 +1,9 @@
 /*
 Given an arithmetic expression e.g. "5-8+7*4-8+9", find the max value of
-the expression by specifying the order of operations, by adding parentheses.
+the expression by specifying the order of operations, as you would on paper
+by adding parentheses. For example, the value of the expression above is
+maximized if the parens are placed as follows:
+5 - ((8 + 7) * (4 - (8 + 9))) = 200
 
 The input is a string, like the one above. The digits are limited to values
 from 0 to 9. The operands are either +, -, or *. The expression is at most
