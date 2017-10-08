@@ -8,7 +8,6 @@ A selection of problems from the Coursera Data Structures and Algorithms Special
     - [Fibonacci Partial Sum](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/FibonacciPartialSum.java?ts=4)
   - Greedy Algorithms
     - [Different Summands](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/DifferentSummands.java?ts=4)
-    - [Maximize Dot Product](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/DotProduct.java?ts=4)
     - [Fractional Knapsack](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/FractionalKnapsack.java?ts=4)
     - [Optimal Points to Cover Segments](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/CoveringSegments.java?ts=4)
     - [Largest Number](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/LargestNumber.java?ts=4)
