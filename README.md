@@ -23,3 +23,6 @@ A selection of problems from the Coursera Data Structures and Algorithms Special
     - [Knapsack Without Repetition](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/Knapsack.java?ts=4)
     - [Edit Distance Between Two Strings](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/EditDistance.java?ts=4)
     - [Maximize the Value of a Mathematical Expression by Placing Parentheses](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/PlacingParentheses.java?ts=4)
+- Course 2, [Data Structures](https://www.coursera.org/learn/data-structures)
+  - Basic Data Structures
+    - [Check Brackets in Code Using a Stack](https://github.com/akritskiy/coursera-dsa/blob/master/ds/check_brackets.py?ts=4)
