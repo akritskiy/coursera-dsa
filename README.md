@@ -25,3 +25,4 @@ A selection of problems from the Coursera Data Structures and Algorithms Special
 - Course 2, [Data Structures](https://www.coursera.org/learn/data-structures)
   - Basic Data Structures
     - [Check Brackets in Code Using a Stack](https://github.com/akritskiy/coursera-dsa/blob/master/ds/check_brackets.py?ts=4)
+    - [Compute Tree Height](https://github.com/akritskiy/coursera-dsa/blob/master/ds/tree-height.py?ts=4)
