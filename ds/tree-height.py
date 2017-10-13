@@ -23,6 +23,17 @@ Another example:
 -1 0 4 0 3
 Output: 4, because the max distance is: begin with node 2, which is child of ->
 node 4, which is child of -> node 3, which is child of -> node 0, the root.
+
+Node height can be computed by recursively tracing the path from the node to the
+root, adding 1 for each node encountered. Tree height can be computed by
+computing the node height of each node, and returning the max. However, it's
+naive to do this for every node, as you will compute the height of some nodes
+many times. A better way, which is implemented here, is to compute the height at
+each node as normal, iterating from the 0th node to the (n - 1)th node, but as
+each node is visited, we save the height at that node in a nodeHeights array.
+Going forward, the height from this node to the root is known, and will not have
+to be calculated again. As the nodeHeights array gets closer to completion, it
+takes less work to calculate the height of a node.
 """
 
 # python3
