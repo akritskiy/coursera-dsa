@@ -34,6 +34,9 @@ each node is visited, we save the height at that node in a nodeHeights array.
 Going forward, the height from this node to the root is known, and will not have
 to be calculated again. As the nodeHeights array gets closer to completion, it
 takes less work to calculate the height of a node.
+
+The feedback for this solution was:
+Good job! (Max time used: 0.41/3.00, max memory used: 64401408/536870912.)
 """
 
 # python3
