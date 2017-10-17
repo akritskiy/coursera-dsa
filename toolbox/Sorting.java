@@ -1,10 +1,13 @@
-//Design a quick sort algorithm to efficiently process arrays with few unique elements.
+/*
+Design a quick sort algorithm to efficiently process arrays with few unique
+elements. Quick sort, at best (with balanced partitions), runs in O(nlogn) time;
+at worst (e.g. if all of the elements in the array are the same element), it
+runs in O(n^2) time. Implement a partition method that separates elements into
+three partitions: less than, equal to, and greater than the pivot.
 
-//Quick sort, at best (with balanced partitions), runs in O(nlogn) time; at worst (e.g. if all of the elements
-//in the array are the same element), it runs in O(n^2) time. Implement a partition method that separates elements
-//into three partitions: less than, equal to, and greater than the pivot.
-
-//The feedback for this solution was: Good job! (Max time used: 1.72/5.50, max memory used: 136478720/536870912.)
+The feedback for this solution was:
+Good job! (Max time used: 1.72/5.50, max memory used: 136478720/536870912.)
+*/
 
 import java.util.*;
 
@@ -24,27 +27,26 @@ public class Sorting {
             System.out.print(arr[i] + " ");
         }
 
-        // //Test
-        // int n = (int)(Math.random() * 20 + 1);
-        // int[] a = new int[n];
-        // for (int i = 0; i < n; i++) {
-        //     a[i] = (int)(Math.random() * 10 + 1);
-        // }
+        /* // Test
+        int n = (int)(Math.random() * 20 + 1);
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = (int)(Math.random() * 10 + 1);
+        }
         
-        // int[] copy = new int[a.length];
-        // System.arraycopy(a, 0, copy, 0, a.length);
+        int[] copy = new int[a.length];
+        System.arraycopy(a, 0, copy, 0, a.length);
 
-        // System.out.println("Before: ");
-        // System.out.println(Arrays.toString(a));        
-        // System.out.println("After: ");
-        // System.out.println(Arrays.toString(quickSort(a)));        
-        // Arrays.sort(copy);
-        // System.out.println("Copy, sorted by Arrays.sort: ");
-        // System.out.println(Arrays.toString(copy));
-        // //End test
+        System.out.println("Before: ");
+        System.out.println(Arrays.toString(a));        
+        System.out.println("After: ");
+        System.out.println(Arrays.toString(quickSort(a)));        
+        Arrays.sort(copy);
+        System.out.println("Copy, sorted by Arrays.sort: ");
+        System.out.println(Arrays.toString(copy));
+        // End test */
     }
     
-    //QUICK SORT METHOD
     private static int[] quickSort(int[] arr) {
         return quickSort(arr, 0, arr.length - 1);
     }
@@ -59,22 +61,18 @@ public class Sorting {
         quickSort(arr, partitionIndexes[1], right);
         return arr;
     }
-    //END QUICK SORT METHOD
     
-    //THREE-WAY PARTITION METHOD
     private static int[] partition(int[] arr) {
         return partition(arr, 0, arr.length - 1);
     }
 
     private static int[] partition(int[] arr, int left, int right) {
-        int[] resultArr = new int[2]; //Initialize result array
+        int[] resultArr = new int[2]; // initialize result array
 
-        //Randomize pivot
-        int r = (int)(Math.random() * (right - left + 1) + left);
+        int r = (int)(Math.random() * (right - left + 1) + left); 
         int temp = arr[left];
         arr[left] = arr[r];
-        arr[r] = temp;
-        //End randomize pivot
+        arr[r] = temp; // randomize pivot
         
         int pivot = arr[left];
         int k = right;
@@ -106,18 +104,15 @@ public class Sorting {
         }
         else {
             resultArr[0] = j - 1;
-        }
-        //resultArr[0] is set to j, which is the rightmost index of the less-than partition
+        } // resultArr[0] is set to the rightmost index of the less-than partition
         
         if (k >= right) {
             resultArr[1] = right;
         }
         else {
             resultArr[1] = k;
-        }
-        //resultArr[1] is set to k, which is the leftmost index of the greater-than partition
+        } // resultArr[1] is set to the leftmost index of the greater-than partition
         
         return resultArr;
     }
-    //END THREE-WAY PARTITION METHOD
 }
