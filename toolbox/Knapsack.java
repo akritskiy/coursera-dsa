@@ -1,8 +1,9 @@
 /*
-Knapsack (or backpack) without repetition problem. Given W = the capacity of the backpack,
-n = the number of items (in our story, the items were gold bars), and an array w = the weight
-of each item, maximize the value that can fit into the backpack. Each item can only be taken
-once, and it isn't possible to take a fraction of an item.
+Knapsack (or backpack) without repetition problem. Given W = the capacity of the
+backpack, n = the number of items (in our story, the items were gold bars), and
+an array w = the weight of each item, maximize the value that can fit into the
+backpack. Each item can only be taken once, and it isn't possible to take a
+fraction of an item.
 
 For example:
 Input:
@@ -10,8 +11,9 @@ Input:
 6 3 4 2
 Output:
 7
-Explanation: the greedy strategy would output a 6, which is incorrect... The value of the backpack
-is maximized by skipping over the largest item and taking the items of weight 3 and 4.
+Explanation: the greedy strategy would output a 6, which is incorrect... The
+value of the backpack is maximized by skipping over the largest item and taking
+the items of weight 3 and 4.
 
 The feedback for this solution was:
 Good job! (Max time used: 0.28/2.25, max memory used: 41947136/536870912.)
@@ -36,12 +38,12 @@ public class Knapsack {
     }
 
     private static int maximizeValue(int W, int[] w) {
-        int n = w.length; //number of bars
+        int n = w.length; // number of bars
 
         int[][] value = new int[n + 1][W + 1];
 
         for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= W; j++) { //j = current capacity of the backpack
+            for (int j = 1; j <= W; j++) { // j = current capacity of the backpack
                 value[i][j] = value[i - 1][j];
                 
                 if (w[i - 1] <= j) {
@@ -52,17 +54,16 @@ public class Knapsack {
                 }
             }
         }
-
         return value[n][W];
     }
 
-    //print 2D array method, useful for testing
-    // private static void printArr(int[][] arr) {
-    //     for (int i = 0; i < arr.length; i++) {
-    //         for (int j = 0; j < arr[0].length; j++) {
-    //             System.out.print(arr[i][j] + " ");
-    //         }
-    //         System.out.println();
-    //     }
-    // }
+    /* // print 2D array method, useful for testing
+    private static void printArr(int[][] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
+    } */
 }
