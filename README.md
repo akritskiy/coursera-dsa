@@ -15,7 +15,7 @@ A selection of problems from the Coursera Data Structures and Algorithms Special
     - [Binary Search](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/BinarySearch.java?ts=4)
     - [Majority Element](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/MajorityElement.java?ts=4)
     - [Sorting an Array with Few Unique Elements - Quick Sort with a Three-way Partition](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/Sorting.java?ts=4)
-    - [Number of Inversions - Modified Merge Sort](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/Inversions.java?ts=4)
+    - [How Close Is an Array to Being Sorted? - Counting Inversions with Modified MergeSort](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/Inversions.java?ts=4)
     - [Points and Segments](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/PointsAndSegments.java?ts=4)
   - Dynamic Programming
     - [Primitive Calculator](https://github.com/akritskiy/coursera-dsa/blob/master/toolbox/PrimitiveCalculator.java?ts=4)
