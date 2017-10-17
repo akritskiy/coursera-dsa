@@ -4,9 +4,9 @@ import java.util.*;
 
 public class FibonacciHuge {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        long n = scanner.nextLong();
-        long m = scanner.nextLong();
+        Scanner input = new Scanner(System.in);
+        long n = input.nextLong();
+        long m = input.nextLong();
         System.out.println(fibMod(n, m));
     }
     
@@ -26,10 +26,10 @@ public class FibonacciHuge {
         long first = 0;
         long second = 1;
         
-        for (int i=2; i<n+1; i++) {
+        for (int i = 2; i < n + 1; i++) {
             temp = first;
             first = second;
-            second = (second + temp) % m; //this % m is crucial, otherwise fib(n,m) fails at large n's
+            second = (second + temp) % m; //this % m is crucial, otherwise fib(n, m) fails at large n's
         }
         return second;
     }
