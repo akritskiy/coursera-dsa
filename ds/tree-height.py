@@ -1,4 +1,6 @@
-"""
+# python3
+
+'''
 Given a description of a tree, compute and output its height. Recall that the
 height of a tree is the max distance from a leaf to a root.
 
@@ -37,9 +39,7 @@ takes less work to calculate the height of a node.
 
 The feedback for this solution was:
 Good job! (Max time used: 0.41/3.00, max memory used: 64401408/536870912.)
-"""
-
-# python3
+'''
 
 import sys, threading
 sys.setrecursionlimit(10**7) # max depth of recursion
