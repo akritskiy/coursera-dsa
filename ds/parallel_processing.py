@@ -1,6 +1,6 @@
 # python3
 
-"""
+'''
 In this problem, simulate a scheduler.
 
 The first line of input contains integers n (number of threads) and m (number of
@@ -69,7 +69,7 @@ threads are available again, and the process is repeated.
 
 The feedback for this solution was:
 Good job! (Max time used: 3.68/6.00, max memory used: 45473792/536870912.)
-"""
+'''
 
 class ParallelProcessing:
 	def __init__(self):
@@ -129,8 +129,8 @@ class ParallelProcessing:
 		self.initThreads()
 		for job in self.jobs:
 			self.assignJob(0, job)
-		for item in self.schedule:
-			print(item[0], item[1])
+		for task in self.schedule:
+			print(task[0], task[1])
 
 class Thread:
 	def __init__(self, id):
