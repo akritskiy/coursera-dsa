@@ -45,7 +45,7 @@ The feedback for this solution was:
 Good job! (Max time used: 0.45/3.00, max memory used: 26288128/536870912.)
 """
 
-# python 3
+# python3
 
 class BuildHeap:
 	def __init__(self):
