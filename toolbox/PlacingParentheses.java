@@ -1,13 +1,12 @@
 /*
-Given an arithmetic expression e.g. "5-8+7*4-8+9", find the max value of
-the expression by specifying the order of operations, as you would on paper
-by adding parentheses. For example, the value of the expression above is
-maximized if the parens are placed as follows:
-5 - ((8 + 7) * (4 - (8 + 9))) = 200
+Given an arithmetic expression e.g. "5-8+7*4-8+9", find the max value of the
+expression by specifying the order of operations, as you would on paper by
+adding parentheses. For example, the value of the expression above is maximized
+if the parens are placed as follows: 5 - ((8 + 7) * (4 - (8 + 9))) = 200
 
-The input is a string, like the one above. The digits are limited to values
-from 0 to 9. The operands are either +, -, or *. The expression is at most
-29 symbols.
+The input is a string, like the one above. The digits are limited to values from
+0 to 9. The operands are either +, -, or *. The expression is at most 29
+symbols.
 
 The feedback for this solution was:
 Good job! (Max time used: 0.22/1.50, max memory used: 26087424/536870912.)
@@ -39,13 +38,11 @@ public class PlacingParentheses {
 				k++;
 			}
 		}
-
 		System.out.print(maxVal(ints, operands));
 	}
 
 	private static long maxVal(int[] ints, char[] operands) {
-		int n = ints.length; //number of integers
-
+		int n = ints.length;
 		long[][] M = new long[n][n];
 		long[][] m = new long[n][n];
 		
@@ -63,13 +60,11 @@ public class PlacingParentheses {
 				M[i][j] = tempArr[1];
 			}
 		}
-
-		// //uncomment print statements to see what is happening in the matrices
-		// System.out.println();
-		// printArr(M);
-		// System.out.println();
-		// printArr(m);
-
+		/* // uncomment print statements to see what is happening in the matrices
+		System.out.println();
+		printArr(M);
+		System.out.println();
+		printArr(m); */
 		return M[0][n - 1];
 	}
 
@@ -110,7 +105,7 @@ public class PlacingParentheses {
 		return Math.min(Math.min(Math.min(Math.min(a, b), c), d), e);
 	}
 
-	// //Generate expression method, for testing
+	/* // generate expression method, for testing
 	private static String generateExpression() {
 		int length = (int)(Math.random() * 29 + 1); //max length is 29
 		while (length < 3 || length % 2 == 0) {
@@ -135,15 +130,15 @@ public class PlacingParentheses {
 
 		String expression = new String(chars);
 		return expression;
-	}
+	} */
 
-	// //print 2D array method, for testing
-    private static void printArr(long[][] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[0].length; j++) {
-                System.out.print(arr[i][j] + "\t");
-            }
-            System.out.println();
-        }
-    }
+	/* // print 2D array method, for testing
+	private static void printArr(long[][] arr) {
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = 0; j < arr[0].length; j++) {
+				System.out.print(arr[i][j] + "\t");
+			}
+			System.out.println();
+		}
+	} */
 }
