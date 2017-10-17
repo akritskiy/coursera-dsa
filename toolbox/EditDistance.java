@@ -1,6 +1,7 @@
 /*
-The edit distance between two strings is the number of insertions, deletions, and mismatches in an alignment
-of two strings. Implement a dynamic programming algorithm for computing edit distance.
+The edit distance between two strings is the number of insertions, deletions,
+and mismatches in an alignment of two strings. Implement a dynamic programming
+algorithm for computing edit distance.
 
 Example:
 The editing distance of two strings, editing and distance...
@@ -10,7 +11,8 @@ e | d | i | - | t | i | n | g | -
 
 There are 3 insertions/deletions and 2 mismatches. The output: 5
 
-The feedback for this solution was: Good job! (Max time used: 0.18/1.50, max memory used: 26275840/536870912.)
+The feedback for this solution was:
+Good job! (Max time used: 0.18/1.50, max memory used: 26275840/536870912.)
 */
 
 import java.util.*;
@@ -54,7 +56,7 @@ public class EditDistance {
 				distance[i][j] = minFour(insertion, deletion, mismatch, match);
 			}
 		}
-		//printArr(distance); //useful print statement to visualize what the algorithm is doing
+		// printArr(distance); // useful print statement to visualize what the algorithm is doing
 		return distance[rows - 1][cols - 1];
 	}
 
@@ -62,13 +64,13 @@ public class EditDistance {
 		return Math.min(Math.min(Math.min(a,b),c),d);
 	}
 
-	//print 2D array method, useful for testing
-    // private static void printArr(int[][] arr) {
-    //     for (int i = 0; i < arr.length; i++) {
-    //         for (int j = 0; j < arr[0].length; j++) {
-    //             System.out.print(arr[i][j] + " ");
-    //         }
-    //         System.out.println();
-    //     }
-    // }
+	/* // print 2D array method, useful for testing
+	private static void printArr(int[][] arr) {
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = 0; j < arr[0].length; j++) {
+				System.out.print(arr[i][j] + " ");
+			}
+			System.out.println();
+		}
+	} */
 }
