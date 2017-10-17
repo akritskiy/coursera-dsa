@@ -1,7 +1,10 @@
-//Given an array of n elements, determine if the array contains an element that occurs more than n/2 times.
-//Design a divide-and-conquer O(nlogn) algorithm.
+/*
+Given an array of n elements, determine if the array contains an element that
+occurs more than n/2 times. Design a divide-and-conquer O(nlogn) algorithm.
 
-//The feedback for this solution was: Good job! (Max time used: 0.98/1.50, max memory used: 118337536/536870912.)
+The feedback for this solution was:
+Good job! (Max time used: 0.98/1.50, max memory used: 118337536/536870912.)
+*/
 
 import java.util.*;
 
@@ -23,7 +26,7 @@ public class MajorityElement {
             System.out.println(1); //if there is a majority element, print 1
         }
 
-        //Stress test
+        // //Stress Test
         // while (true) {
         //     int n = (int)(Math.random() * 15 + 1);
         //     int[] arr = new int[n];
@@ -47,7 +50,6 @@ public class MajorityElement {
         // }
     }
 
-    //Final check method
     private static int finalCheck(int[] arr) {
         int key = major(arr);
         int count = 0;
@@ -64,9 +66,9 @@ public class MajorityElement {
         return -1;
     }
 
-    //Major method. Finds a majority element; however, in some cases it returns a majority when
-    //in fact there isn't one, so the final check method is needed.
-    private static int major(int[] arr) {
+    //Major method finds a majority element. However, in some cases, it returns
+    //a majority when in fact there isn't one, so the final check method is needed.
+	private static int major(int[] arr) {
         return major(arr, 0, arr.length - 1);
     }
 
