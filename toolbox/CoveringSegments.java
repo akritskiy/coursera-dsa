@@ -1,10 +1,12 @@
 /*
-Given the schedule of each person in your building, find the most efficient way to see all of them to get a
-signature for a petition. This is modeled by a set of segments. Each segment represents the time slot when
-a person is at home. The goal is to select as few points as possible, while covering each segment (still
-visiting each person).
+Given the schedule of each person in your building, find the most efficient way
+to see all of them to get their signature for a petition. This is modeled by a
+set of segments. Each segment represents the time slot when a person is at home.
+The goal is to select as few points as possible, while still covering all of the
+segments.
 
-The feedback for this solution was: Good job! (Max time used: 0.21/1.50, max memory used: 26877952/536870912.)
+The feedback for this solution was:
+Good job! (Max time used: 0.21/1.50, max memory used: 26877952/536870912.)
 */
 
 import java.util.*;
@@ -12,7 +14,6 @@ import java.util.*;
 public class CoveringSegments {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        //Input number of segments
         int n = input.nextInt();
         Segment[] segments = new Segment[n];
         
@@ -49,7 +50,8 @@ public class CoveringSegments {
         int numPoints = 0;
 
         while (n > 0) {
-            //Select the end point of the left-most segment (if viewed on a number line, 0...1...2...etc.)
+        	//Select the end point of the left-most segment (if viewed on a
+            //number line, 0...1...2...etc.)
             int point = segments[0].end;
             points[numPoints] = point;
             numPoints++;
@@ -75,7 +77,7 @@ public class CoveringSegments {
         return result;
     }
 
-    //Sort the segments array by end point (least to greatest)
+    //Sort the segments array by end-point. Ascending. Uses selection-sort.
     private static void sortSegments(Segment[] arr, int n) {
         for (int i = 0; i < n - 1; i++) {
             int min = arr[i].end;
