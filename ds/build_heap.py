@@ -1,4 +1,6 @@
-"""
+# python3
+
+'''
 Implement the first step of HeapSort: given an array of integers, convert the
 array into a heap. This is done by applying a certain number of "swaps" to the
 array. A swap is an operation which exchanges two elements within the array.
@@ -43,9 +45,7 @@ Explanation: this array is already a heap.
 
 The feedback for this solution was:
 Good job! (Max time used: 0.45/3.00, max memory used: 26288128/536870912.)
-"""
-
-# python3
+'''
 
 class BuildHeap:
 	def __init__(self):
@@ -66,7 +66,7 @@ class BuildHeap:
 			print(swap[0], swap[1])
 
 	def parent(self, i):
-		return (i - 1) // 2 # // is divide and floor
+		return (i - 1) // 2
 
 	def leftChild(self, i):
 		return i * 2 + 1
