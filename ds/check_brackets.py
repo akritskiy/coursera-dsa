@@ -1,3 +1,5 @@
+# python3
+
 '''
 Your friend is making a text editor for programmers. Implement a feature to find
 errors in the usage of the different kinds of brackets/parens: {}, [], and ().
@@ -15,8 +17,6 @@ Explanation: error at the 7th position (instructions were to use one-based numbe
 Feedback for this solution:
 Good job! (Max time used: 0.10/5.00, max memory used: 16224256/536870912.)
 '''
-
-# python3
 
 import sys
 
