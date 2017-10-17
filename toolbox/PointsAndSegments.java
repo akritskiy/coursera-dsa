@@ -1,20 +1,26 @@
 /*
-Given a set of points and a set of segments, the goal is to compute, for each point, the number of segments that contain the point.
+Given a set of points and a set of segments, the goal is to compute, for each
+point, the number of segments that contain the point. The number of segments and
+points can each be as large as 50,000. Each point and segment endpoint can range
+from -10^8 to 10^8.
 
-The number of segments and points can each be as large as 50,000. Each point and segment endpoint can range from -10^8 to 10^8.
-
-Example 1: Given segments (0, 5) and (7, 10) and points {1, 6, 11}, the output is 1 0 0.
-Explanation: The first point, 1, is found once, in the 1st segment. The others, 6 and 11, are not found in either of the segments.
+Example 1: Given segments (0, 5) and (7, 10) and points {1, 6, 11}, the output
+is 1 0 0. Explanation: The first point, 1, is found once, in the 1st segment.
+The others, 6 and 11, are not found in either of the segments.
 
 Example 2: Given segment (-10, 10) and points {-100, 100, 0}, the output is 0 0 1.
 
-The strategy is to label the start and end of each segment with a 1 and 3, respectively, and each point with a 2. These point-label
-pairs are then sorted by the point, and where the point values are equal, they are sorted by the label. We then iterate through this
-array. Each time we see a label = 1, we increment the start count; label = 3, increment the end count; and label = 2, we save a
-point-count pair in a new array. The count for that point is the current start count - end count. The counts are then mapped back
-to the appropriate position in the original points array.
+The strategy is to label the start and end of each segment with a 1 and 3,
+respectively, and each point with a 2. These point-label pairs are then sorted
+by the point, and where the point values are equal, they are sorted by the
+label. We then iterate through this array. Each time we see a label = 1, we
+increment the start count; label = 3, increment the end count; and label = 2, we
+save a point-count pair in a new array. The count for that point is the current
+start count - end count. The counts are then mapped back to the appropriate
+position in the original points array.
 
-The feedback for this solution was: Good job! (Max time used: 4.88/6.00, max memory used: 168296448/536870912.)
+The feedback for this solution was:
+Good job! (Max time used: 4.88/6.00, max memory used: 168296448/536870912.)
 */
 
 import java.util.*;
@@ -23,17 +29,16 @@ public class PointsAndSegments {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		
-		int s = input.nextInt(); //Number of segments
+		int s = input.nextInt(); // number of segments
 		int[] starts = new int[s];
 		int[] ends = new int[s];
-		int p = input.nextInt(); //Number of points
+		int p = input.nextInt(); // number of points
 		int[] points = new int[p];
 		
 		for (int i = 0; i < s; i++) {
 			starts[i] = input.nextInt();
 			ends[i] = input.nextInt();
 		}
-
 		for (int i = 0; i < p; i++) {
 			points[i] = input.nextInt();
 		}
@@ -45,15 +50,14 @@ public class PointsAndSegments {
 	}
 
 	private static int[] count(int[] starts, int[] ends, int[] points) {
-		int s = starts.length; //Number of segments
-		int p = points.length; //Number of points
-		int n = 2 * s + p; //Number of point-label pairs
+		int s = starts.length; // number of segments
+		int p = points.length; // number of points
+		int n = 2 * s + p; // number of point-label pairs
 
 		Pair[] pairs = new Pair[n];
 		int j = 0;
-
-		//Each point will get a label: 1 for start, 2 for point, 3 for end
-		for (int i = 0; i < s; i++) {
+		
+		for (int i = 0; i < s; i++) { // each point is labeled
 			pairs[j] = new Pair(starts[i], 1);
 			j++;
 			pairs[j] = new Pair(ends[i], 3);
@@ -63,13 +67,11 @@ public class PointsAndSegments {
 		for (int i = 0; i < p; i++) {
 			pairs[j] = new Pair(points[i], 2);
 			j++;
-		}
-		//At this point, pairs contains all the point-label pairs
+		} // now, pairs contains all point-label pairs
 
 		quickSort(pairs);
 
-		//Need a new arr to store each point in points, and the count for that point... point-count pairs
-		Pair[] counts = new Pair[p];
+		Pair[] counts = new Pair[p]; // new arr to store point-count pairs
 		int k = 0;
 		int leftCount = 0;
 		int rightCount = 0;
@@ -87,10 +89,8 @@ public class PointsAndSegments {
 				counts[k] = new Pair(point, 0, count);
 				k++;
 			}
-		}
-		//At this point, counts array contains the point-count pairs
+		} // now, counts contains all point-count pairs
 
-		//This will map the count for each point back to its index in the points array
 		int[] result = new int[p];
 		for (int i = 0; i < p; i++) {
 			for (int m = 0; m < p; m++) {
@@ -98,12 +98,11 @@ public class PointsAndSegments {
 					result[i] = counts[m].count;
 				}
 			}
-		}
+		} // map the count for each point back to its index in the points array
 
 		return result;
 	}
 
-	//Begin sort method
 	private static Pair[] quickSort(Pair[] arr) {
 		return quickSort(arr, 0, arr.length - 1);
 	}
@@ -120,15 +119,13 @@ public class PointsAndSegments {
 	}
 
 	private static int[] partition(Pair[] arr, int left, int right) {
-		int[] result = {0, 0}; //initialize result arr
+		int[] result = {0, 0};
 
-		//randomize pivot
 		int random = (int)(Math.random() * (right - left + 1) + left);
 		Pair temp = arr[left];
 		arr[left] = arr[random];
-		arr[random] = temp;
+		arr[random] = temp; // randomize pivot
 
-		//sort
 		Pair pivot = arr[left];
 		int k = right;
 		int j = left + 1;
@@ -165,12 +162,10 @@ public class PointsAndSegments {
 		j--;
 		k++;
 
-		//move pivot to its final place within the array
 		temp = arr[left];
 		arr[left] = arr[j];
-		arr[j] = temp;
+		arr[j] = temp; // move pivot to its final place within the array
 
-		//store and return the indices of the equals partition
 		if (j <= 0) {
 			result[0] = 0;
 		}
@@ -183,13 +178,12 @@ public class PointsAndSegments {
 		}
 		else {
 			result[1] = k;
-		}
+		} // store and return the indices of the equals partition
 
 		return result;
 	}
-	//End sort method
 
-	//point-label pair
+	// point-label or point-count pair
 	private static class Pair {
 		private int point, label, count;
 
@@ -205,11 +199,11 @@ public class PointsAndSegments {
 		}
 	}
 
-	//print Pair[] method, for testing
+	/* // print Pair[] method, for testing
 	private static void printPairArr(Pair[] arr) {
 		int n = arr.length;
 		for (int i = 0; i < n; i++) {
 			System.out.println("Index: " + i + ", point, label: " + arr[i].point + ", " + arr[i].label);
 		}
-	}
+	} */
 }
