@@ -16,13 +16,10 @@ takes the job.
 This solution uses a binary min-heap to prioritize threads. The thread with
 lowest workload, and where workloads are equal, the thread with lowest id, will
 always be in the 0th position in the threads array. This thread is assigned the
-next job. The thread id and workload before taking the new job are recorded in a
-schedule array.
-
-The desired output is the schedule array: m lines, where the ith line contains
-two space-separated integers, the 0-based index of the thread which processed
-the ith job (thread id) and the time in seconds when the thread will start
-processing that job.
+next job. The thread id and workload before taking the new job are printed; this
+is the desired output: m lines, where the ith line contains two space-separated
+integers, the 0-based index of the thread which processes the ith job (thread
+id) and the time in seconds when the thread will start processing that job.
 
 Example:
 Input:
@@ -36,19 +33,19 @@ Output:
 0 4
 
 Explanation:
-1.  the two threads try to simultaneously take jobs from the list, so thread 0 
-    takes the first job and starts working on it at time 0
-2.  thread 1 takes the second job and starts working on it at time 0
-3.  after one second, thread 0 is done, so it takes the third job and starts
-    working on it at time 1
-4.  after two seconds, thread 1 is done, so it takes the fourth job and starts
-    processing it at time 2
-5.  finally, after two more seconds, thread 0 is done with the third job, so it
-    takes the final job and starts processing it at time 4
+1. the two threads try to simultaneously take jobs from the list, so thread 0 
+   takes the first job and starts working on it at time 0
+2. thread 1 takes the second job and starts working on it at time 0
+3. after one second, thread 0 is done, so it takes the third job and starts
+   working on it at time 1
+4. after two seconds, thread 1 is done, so it takes the fourth job and starts
+   processing it at time 2
+5. finally, after two more seconds, thread 0 is done with the third job, so it
+   takes the final job and starts processing it at time 4
 
 Another example:
 Input:
-4 10
+4 20
 1 1 1 1 1 1 1 1 1 1
 Output:
 0 0
@@ -68,7 +65,7 @@ by thread id. The 0th thread takes the first job and works on it at time 0, the
 threads are available again, and the process is repeated.
 
 The feedback for this solution was:
-Good job! (Max time used: 3.68/6.00, max memory used: 45473792/536870912.)
+Good job! (Max time used: 3.37/6.00, max memory used: 36261888/536870912.)
 '''
 
 class ParallelProcessing:
@@ -77,12 +74,9 @@ class ParallelProcessing:
 		self.num_jobs = 0
 		self.jobs = []
 		self.threads = []
-		self.schedule = []
 
 	def read(self):
-		nm = [int(s) for s in input().split()]
-		self.num_threads = nm[0]
-		self.num_jobs = nm[1]
+		self.num_threads, self.num_jobs = [int(s) for s in input().split()]
 		self.jobs = [int(s) for s in input().split()]
 
 	def initThreads(self):
@@ -102,35 +96,32 @@ class ParallelProcessing:
 		minIndex = i
 		l = self.leftChild(i)
 		r = self.rightChild(i)
-		if l <= len(self.threads) - 1 and self.threads[l].workload < self.threads[minIndex].workload:
-			minIndex = l
-		elif l <= len(self.threads) - 1 and self.threads[l].workload == self.threads[minIndex].workload:
-			# if workloads are equal, prioritize thread with lowest id
-			if self.threads[l].id < self.threads[minIndex].id:
+		if l <= len(self.threads) - 1:
+			if self.threads[l].workload < self.threads[minIndex].workload:
 				minIndex = l
+			elif self.threads[l].workload == self.threads[minIndex].workload and self.threads[l].id < self.threads[minIndex].id:
+				minIndex = l # if workloads are equal, prioritize thread with lowest id
 
-		if r <= len(self.threads) - 1 and self.threads[r].workload < self.threads[minIndex].workload:
-			minIndex = r
-		elif r <= len(self.threads) - 1 and self.threads[r].workload == self.threads[minIndex].workload:
-			if self.threads[r].id < self.threads[minIndex].id: # prioritize thread with lowest id
+		if r <= len(self.threads) - 1:
+			if self.threads[r].workload < self.threads[minIndex].workload:
 				minIndex = r
+			elif self.threads[r].workload == self.threads[minIndex].workload and self.threads[r].id < self.threads[minIndex].id:
+				minIndex = r # prioritize thread with lowest id
 
 		if i != minIndex:
 			self.threads[i], self.threads[minIndex] = self.threads[minIndex], self.threads[i]
 			self.siftDown(minIndex)
 
-	def assignJob(self, i, jobWorkload):
-		self.schedule.append([self.threads[i].id, self.threads[i].workload])
-		self.threads[i].workload += jobWorkload
-		self.siftDown(i)
+	def assignJob(self, jobWorkload):
+		print(self.threads[0].id, self.threads[0].workload)
+		self.threads[0].workload += jobWorkload
+		self.siftDown(0)
 
 	def solve(self):
 		self.read()
 		self.initThreads()
 		for job in self.jobs:
-			self.assignJob(0, job)
-		for task in self.schedule:
-			print(task[0], task[1])
+			self.assignJob(job)
 
 class Thread:
 	def __init__(self, id):
