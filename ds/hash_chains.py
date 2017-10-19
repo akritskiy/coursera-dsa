@@ -31,7 +31,7 @@ Output:
 world
 no
 yes
-		<--(Note: the final check 4 resulted in a blank line below 'yes'.)
+		<--(Note: the final 'check 4' resulted in a blank line below 'yes'.)
 
 Explanation: To compute the hash value of 'world', we use the ASCII codes of its
 characters: e.g. 'w' = 119, 'o' = 111, etc. computeHashValue('world') = (119 +
@@ -45,7 +45,7 @@ Good job! (Max time used: 0.99/7.00, max memory used: 26480640/536870912.)
 '''
 
 class HashChains:
-	prime = 10 ** 9 + 7 # prime and x were given
+	prime = 10 ** 9 + 7
 	x = 263
 
 	def __init__(self):
