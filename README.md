@@ -31,3 +31,4 @@ A selection of problems from the Coursera Data Structures and Algorithms Special
   - [Parallel Processing: Use a Heap to Schedule Jobs](https://github.com/akritskiy/coursera-dsa/blob/master/ds/parallel_processing.py?ts=4)
 - Hash Tables
   - [Simple Phone Book Using Direct Addressing](https://github.com/akritskiy/coursera-dsa/blob/master/ds/phone_book.py?ts=4)
+  - [Hash Table Using a List with Chains](https://github.com/akritskiy/coursera-dsa/blob/master/ds/hash_chains.py?ts=4)
