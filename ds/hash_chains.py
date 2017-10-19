@@ -35,7 +35,7 @@ yes
 
 Explanation: To compute the hash value of 'world', we use the ASCII codes of its
 characters: e.g. 'w' = 119, 'o' = 111, etc. computeHashValue('world') = (119 +
-111 × 263 + 114 × 2632 + 108 × 2633 + 100 × 2634 mod 1 000 000 007) mod 5 = 4,
+111 × 263 + 114 × 263^2 + 108 × 263^3 + 100 × 263^4 mod 1 000 000 007) mod 5 = 4,
 so 'world' is placed in the 4th bin. We check the contents of 4 and find one
 element, 'world'. We test the find function: 'World' is not found, but 'world'
 is. Finally, we delete 'world' and the query 'check 4' returns a blank line.
