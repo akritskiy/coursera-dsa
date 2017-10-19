@@ -29,3 +29,5 @@ A selection of problems from the Coursera Data Structures and Algorithms Special
   - Priority Queues and Disjoint Sets
     - [Convert an Array into a Heap](https://github.com/akritskiy/coursera-dsa/blob/master/ds/build_heap.py?ts=4)
     - [Parallel Processing: Use a Heap to Schedule Jobs](https://github.com/akritskiy/coursera-dsa/blob/master/ds/parallel_processing.py?ts=4)
+  - Hash Tables
+    - [Simple Phone Book Using Direct Addressing](https://github.com/akritskiy/coursera-dsa/blob/master/ds/phone_book.py?ts=4)
