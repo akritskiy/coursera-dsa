@@ -32,3 +32,5 @@ A selection of problems from the Coursera Data Structures and Algorithms Special
 - Hash Tables
   - [Simple Phone Book Using Direct Addressing](https://github.com/akritskiy/coursera-dsa/blob/master/ds/phone_book.py?ts=4)
   - [Hash Table Using a List with Chains](https://github.com/akritskiy/coursera-dsa/blob/master/ds/hash_chains.py?ts=4)
+- Binary Search Trees
+  - [Tree Traversals](https://github.com/akritskiy/coursera-dsa/blob/master/ds/tree_traversals.py?ts=4)
