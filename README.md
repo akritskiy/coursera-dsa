@@ -25,7 +25,7 @@ A selection of problems from the Coursera Data Structures and Algorithms Special
 ### 2. [Data Structures](https://www.coursera.org/learn/data-structures)
 - Basic Data Structures
   - [Check Brackets in Code Using a Stack](https://github.com/akritskiy/coursera-dsa/blob/master/ds/check_brackets.py?ts=4)
-  - [Compute Tree Height](https://github.com/akritskiy/coursera-dsa/blob/master/ds/tree-height.py?ts=4)
+  - [Compute Tree Height](https://github.com/akritskiy/coursera-dsa/blob/master/ds/tree_height.py?ts=4)
 - Priority Queues and Disjoint Sets
   - [Convert an Array into a Heap](https://github.com/akritskiy/coursera-dsa/blob/master/ds/build_heap.py?ts=4)
   - [Parallel Processing: Use a Heap to Schedule Jobs](https://github.com/akritskiy/coursera-dsa/blob/master/ds/parallel_processing.py?ts=4)
