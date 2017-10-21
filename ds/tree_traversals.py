@@ -29,7 +29,7 @@ The tree described in the input:
 	2		5
   1   3
 
-A description of all three traversal methods can be found here:
+A description of the traversal methods can be found here:
 https://en.wikipedia.org/wiki/Tree_traversal#Pre-order
 
 The feedback for this solution was:
