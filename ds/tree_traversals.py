@@ -25,9 +25,9 @@ Output:
 1 3 2 5 4
 Explanation:
 The tree described in the input:
-		4
-	2		5
-  1   3
+________4
+____2_______5
+__1___3
 
 A description of the traversal methods can be found here:
 https://en.wikipedia.org/wiki/Tree_traversal#Pre-order
