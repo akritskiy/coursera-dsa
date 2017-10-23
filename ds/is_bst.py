@@ -52,25 +52,27 @@ import math
 class IsBST:
 	def __init__(self):
 		self.n = 0
-		self.keys = []
-		self.l = []
-		self.r = []
 
-	def read(self):
-		self.n = int(input())
+	def initArrays(self):
 		self.keys = [0] * self.n
 		self.l = [0] * self.n
 		self.r = [0] * self.n
-		for i in range(self.n):
-			self.keys[i], self.l[i], self.r[i] = [int(s) for s in input().split()]
+
+	def read(self):
+		self.n = int(input())
+
+		if self.n > 1:
+			self.initArrays()
+			for i in range(self.n):
+				self.keys[i], self.l[i], self.r[i] = [int(x) for x in input().split()]
 
 	def checkBST(self):
-		if self.n == 0:
+		if self.n <= 1:
 			return 'CORRECT'
 
-		i = 0
+		i = 0 # current node index
 		stack = []
-		previous_node = -math.inf
+		previous_key = -math.inf
 
 		while True:
 			if i != -1:
@@ -78,17 +80,16 @@ class IsBST:
 				i = self.l[i]
 			elif stack:
 				i = stack.pop()
-				if previous_node > self.keys[i]:
+				if previous_key > self.keys[i]:
 					return 'INCORRECT'
-				else:
-					previous_node = self.keys[i]
-
+				
+				previous_key = self.keys[i]
 				i = self.r[i]
 			else:
 				break
 		return 'CORRECT'
 
 if __name__ == '__main__':
-	x = IsBST()
-	x.read()
-	print(x.checkBST())
+	my_bst = IsBST()
+	my_bst.read()
+	print(my_bst.checkBST())
