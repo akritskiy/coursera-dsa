@@ -1,5 +1,5 @@
 # coursera-dsa
-A selection of problems from the Coursera Data Structures and Algorithms Specialization, from UC San Diego and Higher School of Economics.
+A selection of problems from the Coursera Data Structures and Algorithms Specialization, from UC San Diego and Higher School of Economics. Course certificates: [Toolbox](https://www.coursera.org/account/accomplishments/certificate/9YGX779HEVVP), [Data Structures](https://www.coursera.org/account/accomplishments/certificate/BPBGYAND43CF).
 
 #### Course 1. [Algorithmic Toolbox](https://www.coursera.org/learn/algorithmic-toolbox)
 - Introduction
@@ -35,3 +35,4 @@ A selection of problems from the Coursera Data Structures and Algorithms Special
 - Binary Search Trees
   - [Tree Traversals](https://github.com/akritskiy/coursera-dsa/blob/master/ds/tree_traversals.py?ts=4)
   - [Verify Binary Search Tree](https://github.com/akritskiy/coursera-dsa/blob/master/ds/is_bst.py?ts=4)
+  - [Rope](https://github.com/akritskiy/coursera-dsa/blob/master/ds/rope.py?ts=4)
