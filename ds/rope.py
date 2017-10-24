@@ -1,9 +1,16 @@
 # python3
 
 '''
-Implement rope, a data structure that can store a string and efficiently cut a substring and insert it in a different position. This data structure can be enhanced to become persistent -- that is, to allow access to previous versions of the string. This makes it a suitable choice for storing the text in text editors.
+Implement rope, a data structure that can store a string and efficiently cut a
+substring and insert it in a different position. This data structure can be
+enhanced to become persistent -- that is, to allow access to previous versions
+of the string. This makes it a suitable choice for storing the text in text
+editors.
 
-Given a string, process n queries. Each query is described by three integers i, j, k and means cut substring S[i..j] (i and j are 0-based) and insert it after the kth symbol of the remaining string (1-based numbering). If k = 0, S[i..j] is inserted in the beginning.
+Given a string, process n queries. Each query is described by three integers i,
+j, k and means cut substring S[i..j] (i and j are 0-based) and insert it after
+the kth symbol of the remaining string (1-based numbering). If k = 0, S[i..j] is
+inserted in the beginning.
 
 For example, given input:
 hlelowrold
