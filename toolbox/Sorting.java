@@ -1,118 +1,91 @@
 /*
 Design a quick sort algorithm to efficiently process arrays with few unique
-elements. Quick sort, at best (with balanced partitions), runs in O(nlogn) time;
-at worst (e.g. if all of the elements in the array are the same element), it
-runs in O(n^2) time. Implement a partition method that separates elements into
-three partitions: less than, equal to, and greater than the pivot.
+elements. Note: pseudocode for quick sort was given in lecture.
+
+Quick sort, at best (with balanced partitions), runs in O(nlogn) time; at worst
+(e.g. if all of the elements in the array are the same element), in O(n^2) time.
+Implement a partition method that separates elements into three partitions: less
+than, equal to, and greater than the pivot.
 
 The feedback for this solution was:
-Good job! (Max time used: 1.72/5.50, max memory used: 136478720/536870912.)
+Good job! (Max time used: 1.52/5.50, max memory used: 135426048/536870912.)
 */
 
 import java.util.*;
 
 public class Sorting {
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        
-        int n = input.nextInt();
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = input.nextInt();
-        }
-        
-        quickSort(arr);
-        
-        for (int i = 0; i < n; i++) {
-            System.out.print(arr[i] + " ");
-        }
-
-        /* // Test
-        int n = (int)(Math.random() * 20 + 1);
-        int[] a = new int[n];
-        for (int i = 0; i < n; i++) {
-            a[i] = (int)(Math.random() * 10 + 1);
-        }
-        
-        int[] copy = new int[a.length];
-        System.arraycopy(a, 0, copy, 0, a.length);
-
-        System.out.println("Before: ");
-        System.out.println(Arrays.toString(a));        
-        System.out.println("After: ");
-        System.out.println(Arrays.toString(quickSort(a)));        
-        Arrays.sort(copy);
-        System.out.println("Copy, sorted by Arrays.sort: ");
-        System.out.println(Arrays.toString(copy));
-        // End test */
+    private static void quickSort(int[] array) {
+        quickSort(array, 0, array.length - 1);
     }
     
-    private static int[] quickSort(int[] arr) {
-        return quickSort(arr, 0, arr.length - 1);
-    }
-    
-    private static int[] quickSort(int[] arr, int left, int right) {
+    private static void quickSort(int[] array, int left, int right) {
         if (left >= right) {
-            return arr;
+            return;
         }
 
-        int[] partitionIndexes = partition(arr, left, right);
-        quickSort(arr, left, partitionIndexes[0]);
-        quickSort(arr, partitionIndexes[1], right);
-        return arr;
+        int[] partitionIndices = partition(array, left, right);
+        quickSort(array, left, partitionIndices[0]);
+        quickSort(array, partitionIndices[1], right);
+    }
+
+    private static void randomizePivot(int[] array, int left, int right) {
+        int randomIndex = (int)(Math.random() * (right - left + 1) + left);
+        
+        int temp = array[left];
+        array[left] = array[randomIndex];
+        array[randomIndex] = temp;
     }
     
-    private static int[] partition(int[] arr) {
-        return partition(arr, 0, arr.length - 1);
+    private static int[] partition(int[] array) {
+        return partition(array, 0, array.length - 1);
     }
 
-    private static int[] partition(int[] arr, int left, int right) {
-        int[] resultArr = new int[2]; // initialize result array
-
-        int r = (int)(Math.random() * (right - left + 1) + left); 
-        int temp = arr[left];
-        arr[left] = arr[r];
-        arr[r] = temp; // randomize pivot
+    private static int[] partition(int[] array, int left, int right) {
+        randomizePivot(array, left, right);
         
-        int pivot = arr[left];
+        int pivot = array[left];
         int k = right;
         int j = left + 1;
+        int temp;
+
         for (int i = left + 1; i <= k; i++) {
-            if (arr[i] < pivot) {
-                temp = arr[j];
-                arr[j] = arr[i];
-                arr[i] = temp;
+            if (array[i] < pivot) {
+                temp = array[j];
+                array[j] = array[i];
+                array[i] = temp;
                 j++;
             }
-            else if (arr[i] > pivot) {
-                temp = arr[k];
-                arr[k] = arr[i];
-                arr[i] = temp;
+            else if (array[i] > pivot) {
+                temp = array[k];
+                array[k] = array[i];
+                array[i] = temp;
                 k--;
                 i--;
             }
         }
-        j--;
-        k++;
+        temp = array[left];
+        array[left] = array[j - 1];
+        array[j - 1] = temp;
         
-        temp = arr[left];
-        arr[left] = arr[j];
-        arr[j] = temp;
-        
-        if (j <= 0) {
-            resultArr[0] = 0;
+        int[] partitionIndices = {0, 0};
+        partitionIndices[0] = Math.max(0, j - 2); // rightmost index of the less-than partition
+        partitionIndices[1] = Math.min(right, k + 1); // leftmost index of the greater-than partition
+        return partitionIndices;
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt();
+        int[] array = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            array[i] = input.nextInt();
         }
-        else {
-            resultArr[0] = j - 1;
-        } // resultArr[0] is set to the rightmost index of the less-than partition
         
-        if (k >= right) {
-            resultArr[1] = right;
+        quickSort(array);
+        
+        for (int i = 0; i < n; i++) {
+            System.out.print(array[i] + " ");
         }
-        else {
-            resultArr[1] = k;
-        } // resultArr[1] is set to the leftmost index of the greater-than partition
-        
-        return resultArr;
     }
 }

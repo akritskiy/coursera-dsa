@@ -61,13 +61,13 @@ class IsBST:
 	def read(self):
 		self.n = int(input())
 
-		if self.n > 1:
+		if self.n not in (0, 1):
 			self.initArrays()
 			for i in range(self.n):
 				self.keys[i], self.l[i], self.r[i] = [int(x) for x in input().split()]
 
 	def checkBST(self):
-		if self.n <= 1:
+		if self.n in (0, 1):
 			return 'CORRECT'
 
 		i = 0 # current node index
