@@ -18,8 +18,6 @@ Feedback for this solution:
 Good job! (Max time used: 0.10/5.00, max memory used: 16224256/536870912.)
 '''
 
-import sys
-
 class Bracket:
     def __init__(self, br_type, position):
         self.br_type = br_type
@@ -44,7 +42,7 @@ def checkBrackets(text):
         if char in open_br:
             stack.append(Bracket(char, i + 1))
         elif char in close_br:
-            if not stack: #if stack is empty
+            if not stack:
                 return i + 1
             else:
                 last_open_br = stack.pop()
@@ -58,5 +56,4 @@ def checkBrackets(text):
         return stack[0].position
 
 if __name__ == "__main__":
-    text = sys.stdin.read()
-    print(checkBrackets(text))
+    print(checkBrackets(input()))
