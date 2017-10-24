@@ -1,7 +1,6 @@
-/*
-The goal of this problem is to represent a positive integer as a sum of as many
-distinct positive integers as possible. That is, given an integer n, find the
-max k such that n = a1 + a2 + ... + ak, and no two ai are equal. n can be as
+/* The goal of this problem is to represent a positive integer as a sum of as
+many distinct positive integers as possible. That is, given an integer n, find
+the max k such that n = a1 + a2 + ... + ak, and no two ai are equal. n can be as
 large as 10^9.
 
 For example:
@@ -15,23 +14,12 @@ Output:
 3
 1 2 5
 
-The feedback for this problem was: Good job! (Max time used: 0.61/1.50, max
-memory used: 50421760/536870912.)
-*/
+The feedback for this problem was:
+Good job! (Max time used: 0.61/1.50, max memory used: 50421760/536870912.) */
 
 import java.util.*;
 
 public class DifferentSummands{
-	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		int n = input.nextInt();
-		List<Integer> summands = optimalSummands(n);
-        System.out.println(summands.size());
-        for (Integer summand : summands) {
-            System.out.print(summand + " ");
-        }
-	}
-
 	private static List<Integer> optimalSummands(int n) {
 		List<Integer> summands = new ArrayList<Integer>();
 		
@@ -43,7 +31,16 @@ public class DifferentSummands{
 			summands.add(i);
 			n -= i;
 		}
-
 		return summands;
+	}
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		List<Integer> summands = optimalSummands(input.nextInt());
+        
+        System.out.println(summands.size());
+        for (Integer summand : summands) {
+            System.out.print(summand + " ");
+        }
 	}
 }
