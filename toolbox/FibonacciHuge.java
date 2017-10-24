@@ -36,7 +36,6 @@ public class FibonacciHuge {
         long second = 1;
 
         long count = 0; // initial length of the pisano period
-        long result = -1;
         
         while (true) {
             temp = first;
