@@ -36,10 +36,6 @@ public class Sorting {
         array[randomIndex] = temp;
     }
     
-    private static int[] partition(int[] array) {
-        return partition(array, 0, array.length - 1);
-    }
-
     private static int[] partition(int[] array, int left, int right) {
         randomizePivot(array, left, right);
         

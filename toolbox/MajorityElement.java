@@ -1,78 +1,47 @@
-/*
-Given an array of n elements, determine if the array contains an element that
+/* Given an array of n elements, determine if the array contains an element that
 occurs more than n/2 times. Design a divide-and-conquer O(nlogn) algorithm.
 
-The feedback for this solution was:
-Good job! (Max time used: 0.98/1.50, max memory used: 118337536/536870912.)
-*/
+The desired output is either a 1, indicating that there is a majority element,
+or a 0, indicating that there isn't a majority element. For example:
 
-import java.util.*;
+Input:
+5
+2 3 9 2 2
+Output:
+1
+
+Input:
+4
+1 2 3 4
+Output:
+0
+
+The feedback for this solution was:
+Good job! (Max time used: 0.98/1.50, max memory used: 118337536/536870912.) */
+
+import java.util.Scanner;
 
 public class MajorityElement {
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        
-        int n = input.nextInt();
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = input.nextInt();
-        }
-        
-        int result = finalCheck(arr);        
-        if (result == -1) {
-            System.out.println(0); //if there isn't a majority element, print 0
-        }
-        else {
-            System.out.println(1); //if there is a majority element, print 1
-        }
-
-        // //Stress Test
-        // while (true) {
-        //     int n = (int)(Math.random() * 15 + 1);
-        //     int[] arr = new int[n];
-        //     for (int i = 0; i < n; i++) {
-        //         arr[i] = (int)(Math.random() * 3 + 1);
-        //     }
-        //     int naiveResult = naive(arr);
-        //     int result = finalCheck(arr);
-        //     if (naiveResult == result) {
-        //         System.out.println("Correct");
-        //     }
-        //     else {
-        //         System.out.println("Wrong");
-        //         System.out.println("Naive result: " + naiveResult);
-        //         System.out.println("Result: " + result);
-        //         System.out.println(Arrays.toString(arr));
-        //         Arrays.sort(arr);
-        //         System.out.println(Arrays.toString(arr));
-        //         break;
-        //     }
-        // }
-    }
-
-    private static int finalCheck(int[] arr) {
-        int key = major(arr);
+    private static int finalCheckMajority(int[] arr) {
+        int candidate = majorityCandidate(arr);
         int count = 0;
-        int n = arr.length;
-        int mid = n / 2;
-        for (int i = 0; i < n; i++) {
-            if (arr[i] == key) {
+        int mid = arr.length / 2;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == candidate) {
                 count++;
                 if (count > mid) {
-                    return key;
+                    return 1;
                 }
             }
         }
-        return -1;
+        return 0;
     }
 
-    //Major method finds a majority element. However, in some cases, it returns
-    //a majority when in fact there isn't one, so the final check method is needed.
-	private static int major(int[] arr) {
-        return major(arr, 0, arr.length - 1);
+    private static int majorityCandidate(int[] arr) {
+        return majorityCandidate(arr, 0, arr.length - 1);
     }
 
-    private static int major(int[] arr, int left, int right) {
+    private static int majorityCandidate(int[] arr, int left, int right) {
         if (left == right) {
             return arr[left];
         }
@@ -85,8 +54,8 @@ public class MajorityElement {
         }
 
         int mid = (right + left) / 2;
-        int leftHalf = major(arr, left, mid);
-        int rightHalf = major(arr, mid + 1, right);
+        int leftHalf = majorityCandidate(arr, left, mid);
+        int rightHalf = majorityCandidate(arr, mid + 1, right);
 
         if (leftHalf == rightHalf) {
             return leftHalf;
@@ -126,18 +95,16 @@ public class MajorityElement {
                 if (r > arr.length / 2) {
                     return rightHalf;
                 }
-                else {
-                    return -1;
-                }
+                return -1;
             }
         }
 
         if (leftHalf != -1) {
-            int c = 0;
+            int l = 0;
             for (int i = left; i <= right; i++) {
                 if (arr[i] == leftHalf) {
-                    c++;
-                    if (c > (right - left) / 2) {
+                    l++;
+                    if (l > (right - left) / 2) {
                         return leftHalf;
                     }
                 }
@@ -145,11 +112,11 @@ public class MajorityElement {
         }
 
         if (rightHalf != -1) {
-            int c = 0;
+            int r = 0;
             for (int i = left; i <= right; i++) {
                 if (arr[i] == rightHalf) {
-                    c++;
-                    if (c > (right - left) / 2) {
+                    r++;
+                    if (r > (right - left) / 2) {
                         return rightHalf;
                     }
                 }
@@ -159,25 +126,13 @@ public class MajorityElement {
         return -1;
     }
 
-    //Naive method. Works in O(n^2) time.
-    // private static int naive(int[] arr) {
-    //     int n = arr.length;
-    //     int mid = n / 2;
-
-    //     int[] copy = new int[n];
-    //     System.arraycopy(arr, 0, copy, 0, n);
-    //     Arrays.sort(copy);
-    
-    //     int key = copy[mid];
-    //     int count = 0;
-    //     for (int i = 0; i < n; i++) {
-    //         if (copy[i] == key) {
-    //             count++;
-    //             if (count > mid) {
-    //                 return key;
-    //             }
-    //         }
-    //     }
-    //     return -1;
-    // }
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int[] arr = new int[input.nextInt()];
+        
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = input.nextInt();
+        }
+        System.out.println(finalCheckMajority(arr));
+    }
 }
