@@ -1,96 +1,35 @@
-/*
-The goal of this problem is to count the number of inversions of a given
-sequence. An "inversion" is any two elements in an array such that arr[i] >
-arr[i + 1]. For example, the array {2, 1} contains one inversion. If the
-inversion is performed, the resulting array {1, 2} is sorted in ascending order.
-The array {3, 1, 2} contains two inversions. An array that is already sorted
-contains zero inversions, and an array sorted in descending order contains n *
-(n - 1) / 2 inversions.
+/* The goal of this problem is to count the number of inversions of a given
+sequence. An "inversion" is any two elements in an array such that array[i] >
+array[i + 1]. For example, the array {2, 1} contains one inversion. If the
+inversion is performed, the resulting array {1, 2} is sorted (in ascending
+order). The array {3, 1, 2} contains two inversions. An array that is already
+sorted contains zero inversions, and an array sorted in descending order
+contains n * (n - 1) / 2 inversions.
 
 Array length can be as large as 10^5, and each ai can be as large as 10^9. In
 the worst case, the number of inversions can be 4,999,950,000, so the number of
-inversions should be stored in a long datatype.
+inversions should be stored in a long datatype. An example:
 
-The solution is a modification of the merge sort algorithm. The feedback for
-this solution was: Good job! (Max time used: 0.99/4.50, max memory used:
-137515008/536870912.)
-*/
+Input:
+5
+2 3 9 2 9
+Output:
+2
+Explanation (0-based numbering):
+Invert element 2 and 3 = 2 3 2 9 9. Invert element 1 and 2 = 2 2 3 9 9.
 
-import java.util.*;
+The solution is a modification of merge sort. Note: the pseudocode for merge
+sort was given in the lecture. The feedback for this solution was:
+Good job! (Max time used: 0.99/4.50, max memory used: 137515008/536870912.) */
+
+import java.util.Scanner;
 
 public class Inversions {
-	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		int n = input.nextInt();
-		int[] a = new int[n];
-		for (int i = 0; i < n; i++) {
-			a[i] = input.nextInt();
-		}
-		Data x = mergeSort(a);
-		System.out.println(x.count);
-		
-		/* // Simple test for counting inversions. Uses an array sorted in
-		// descending order. The number of inversions is n * (n - 1) / 2.
-		int n = (int)(Math.random() * 1000 + 1);
-		int[] a = new int[n];
-		a[0] = (int)(Math.random() * 1000 + 1);
-		for (int i = 1; i < n; i++) {
-			a[i] = a[i - 1] + 1;
-		}
-		int[] b = new int[n];
-		for (int i = 0; i < n; i++) {
-			b[i] = a[n - 1 - i];
-		} // array b is sorted in descending order
-
-		Data x = mergeSort(b);
-		System.out.println(Arrays.toString(x.array));
-		System.out.println(x.count);
-		int numInversions = n * (n - 1) / 2;
-		if (numInversions == x.count) {
-			System.out.println("Correct");
-		}
-		else {
-			System.out.println("Wrong");
-		}
-		// End simple test. */
-
-		/* // Stress test for sorting function. Does not test counting of inversions.
-		while (true) {
-			int n = (int)(Math.random() * 10 + 1);
-			int[] a = new int[n];
-			for (int i = 0; i < n; i++) {
-				a[i] = (int)(Math.random() * 10 + 1);
-			}
-
-			Data x = mergeSort(a);
-			int[] b = x.array; // arr sorted by mergeSort
-			Arrays.sort(a); // arr sorted by Arrays.sort()
-		
-			System.out.println("Array a: " + Arrays.toString(a));
-			System.out.println("Array b: " + Arrays.toString(b));
-
-			if (identical(a, b)) {
-				System.out.println("Correct");
-			}
-			else {
-				System.out.println("Wrong");
-				break;
-			}
-		}
-		// End stress test */
-	}
-
-	// A class to contain an array and the inversion count.
 	private static class Data {
 		private int[] array = {};
 		private long count = 0;
 
 		private Data() {}
-
-		private Data(int[] array, long count) {
-			this.array = array;
-			this.count = count;
-		}
 
 		private Data(int arrayLength, long count) {
 			this.array = new int[arrayLength];
@@ -170,16 +109,13 @@ public class Inversions {
 		}
 	}
 
-	/* // Identical method. Compares two arrays. Returns true if identical, false
-	// otherwise. Used to test the sorting function of mergeSort.
-	private static boolean identical(int[] a, int[] b) {
-		boolean verdict = true;
-		for (int i = 0; i < a.length; i++) {
-			if (a[i] != b[i]) {
-				verdict = false;
-				break;
-			}
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		int[] array = new int[input.nextInt()];
+
+		for (int i = 0; i < array.length; i++) {
+			array[i] = input.nextInt();
 		}
-		return verdict;
-	} */
+		System.out.println(mergeSort(array).count);
+	}
 }
