@@ -1,19 +1,30 @@
-/*
-Given a set of points and a set of segments, the goal is to compute, for each
-point, the number of segments that contain the point. The number of segments and
-points can each be as large as 50,000. Each point and segment endpoint can range
-from -10^8 to 10^8.
+/* Given a set of points and a set of segments, the goal is to compute, for each point, the number of segments that contain the point. The number of segments and points can each be as large as 50,000. Each point and segment endpoint can range from -10^8 to 10^8.
 
-Example 1: Given segments (0, 5) and (7, 10) and points {1, 6, 11}, the output
-is 1 0 0. Explanation: The first point, 1, is found once, in the 1st segment.
-The others, 6 and 11, are not found in either of the segments.
+For example:
+Input:
+2 3
+0 5
+7 10
+1 6 11
+Output:
+1 0 0
+Explanation: we have 2 segments (0, 5) and (7, 10), and 3 points {1, 6, 11}. The
+first point, 1, is found once, in the first segment. The others, 6 and 11, are
+not found in either of the segments.
 
-Example 2: Given segment (-10, 10) and points {-100, 100, 0}, the output is 0 0 1.
+Input:
+1 3
+-10 10
+-100 100 0
+Output:
+0 0 1
+Explanation: we have 1 segment (-10, 10) and 3 points {-100, 100, 0}. Only the
+third point, 0, is found on the segment.
 
 The strategy is to label the start and end of each segment with a 1 and 3,
 respectively, and each point with a 2. These point-label pairs are then sorted
 by the point, and where the point values are equal, they are sorted by the
-label. We then iterate through this array. Each time we see a label = 1, we
+label. We then iterate through this array. Each time we see label = 1, we
 increment the start count; label = 3, increment the end count; and label = 2, we
 save a point-count pair in a new array. The count for that point is the current
 start count - end count. The counts are then mapped back to the appropriate
@@ -21,114 +32,108 @@ position in the original points array.
 
 The feedback for this solution was:
 Good job! (Max time used: 4.88/6.00, max memory used: 168296448/536870912.)
-*/
+
+27 Oct 2017: rewrote most of the solution, tried to adopt "best practice" of
+having shorter methods that do only one thing, more descriptive var names, etc.
+The result:
+Good job! (Max time used: 3.27/6.00, max memory used: 168620032/536870912.)
+... 67% of the previous max time used. */
 
 import java.util.*;
 
 public class PointsAndSegments {
-	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
-		
-		int s = input.nextInt(); // number of segments
-		int[] starts = new int[s];
-		int[] ends = new int[s];
-		int p = input.nextInt(); // number of points
-		int[] points = new int[p];
-		
-		for (int i = 0; i < s; i++) {
-			starts[i] = input.nextInt();
-			ends[i] = input.nextInt();
-		}
-		for (int i = 0; i < p; i++) {
-			points[i] = input.nextInt();
+	private static class Pair {
+		private int point, label, count;
+
+		private Pair(int point, int label) {
+			this.point = point;
+			this.label = label;
 		}
 
-		int[] result = count(starts, ends, points);
-		for (int i = 0; i < p; i++) {
-			System.out.print(result[i] + " ");
+		private Pair(int point, int label, int count) {
+			this.point = point;
+			this.label = label;
+			this.count = count;
 		}
 	}
 
-	private static int[] count(int[] starts, int[] ends, int[] points) {
-		int s = starts.length; // number of segments
-		int p = points.length; // number of points
-		int n = 2 * s + p; // number of point-label pairs
-
-		Pair[] pairs = new Pair[n];
+	private static Pair[] labelPoints(int[] starts, int[] ends, int[] points) {
+		int s = starts.length;
+		int p = points.length;
+		Pair[] labeledPoints = new Pair[2 * s + p];
 		int j = 0;
-		
-		for (int i = 0; i < s; i++) { // each point is labeled
-			pairs[j] = new Pair(starts[i], 1);
+
+		for (int i = 0; i < s; i++) {
+			labeledPoints[j] = new Pair(starts[i], 1);
 			j++;
-			pairs[j] = new Pair(ends[i], 3);
+			labeledPoints[j] = new Pair(ends[i], 3);
 			j++;
 		}
 
 		for (int i = 0; i < p; i++) {
-			pairs[j] = new Pair(points[i], 2);
+			labeledPoints[j] = new Pair(points[i], 2);
 			j++;
-		} // now, pairs contains all point-label pairs
+		}
+		return labeledPoints;
+	}
 
-		quickSort(pairs);
+	private static Pair[] getCounts(Pair[] labeledPoints, int numPoints) {
+		Pair[] counts = new Pair[numPoints];
+		int j = 0;
+		int startCount = 0;
+		int endCount = 0;
 
-		Pair[] counts = new Pair[p]; // new arr to store point-count pairs
-		int k = 0;
-		int leftCount = 0;
-		int rightCount = 0;
-
-		for (int i = 0; i < n; i++) {
-			if (pairs[i].label == 1) {
-				leftCount++;
+		for (int i = 0; i < labeledPoints.length; i++) {
+			if (labeledPoints[i].label == 1) {
+				startCount++;
 			}
-			else if (pairs[i].label == 3) {
-				rightCount++;
+			else if (labeledPoints[i].label == 3) {
+				endCount++;
 			}
-			else if (pairs[i].label == 2) {
-				int point = pairs[i].point;
-				int count = leftCount - rightCount;
-				counts[k] = new Pair(point, 0, count);
-				k++;
+			else if (labeledPoints[i].label == 2) {
+				counts[j] = new Pair(labeledPoints[i].point, 0, startCount - endCount);
+				j++;
 			}
-		} // now, counts contains all point-count pairs
+		}
+		return counts;
+	}
 
-		int[] result = new int[p];
-		for (int i = 0; i < p; i++) {
-			for (int m = 0; m < p; m++) {
-				if (points[i] == counts[m].point) {
-					result[i] = counts[m].count;
+	private static void printResult(Pair[] counts, int[] points) {
+		for (int i = 0; i < points.length; i++) {
+			for (int j = 0; j < points.length; j++) {
+				if (points[i] == counts[j].point) {
+					System.out.print(counts[j].count + " ");
+					break;
 				}
 			}
-		} // map the count for each point back to its index in the points array
-
-		return result;
-	}
-
-	private static Pair[] quickSort(Pair[] arr) {
-		return quickSort(arr, 0, arr.length - 1);
-	}
-
-	private static Pair[] quickSort(Pair[] arr, int left, int right) {
-		if (left >= right) {
-			return arr;
 		}
-
-		int[] m = partition(arr, left, right);
-		quickSort(arr, left, m[0]);
-		quickSort(arr, m[1], right);
-		return arr;
 	}
+
+	private static void quickSort(Pair[] arr, int left, int right) {
+		if (left >= right) {
+			return;
+		}
+		int[] partitionIndices = partition(arr, left, right);
+		quickSort(arr, left, partitionIndices[0]);
+		quickSort(arr, partitionIndices[1], right);
+	}
+
+	private static void randomizePivot(Pair[] array, int left, int right) {
+        int randomIndex = (int)(Math.random() * (right - left + 1) + left);
+        
+        Pair temp = array[left];
+        array[left] = array[randomIndex];
+        array[randomIndex] = temp;
+    }
 
 	private static int[] partition(Pair[] arr, int left, int right) {
-		int[] result = {0, 0};
-
-		int random = (int)(Math.random() * (right - left + 1) + left);
-		Pair temp = arr[left];
-		arr[left] = arr[random];
-		arr[random] = temp; // randomize pivot
+		randomizePivot(arr, left, right);
 
 		Pair pivot = arr[left];
 		int k = right;
 		int j = left + 1;
+		Pair temp;
+
 		for (int i = left + 1; i <= k; i++) {
 			if (arr[i].point < pivot.point) {
 				temp = arr[j];
@@ -159,51 +164,36 @@ public class PointsAndSegments {
 				i--;
 			}
 		}
-		j--;
-		k++;
-
 		temp = arr[left];
-		arr[left] = arr[j];
-		arr[j] = temp; // move pivot to its final place within the array
+		arr[left] = arr[j - 1];
+		arr[j - 1] = temp;
 
-		if (j <= 0) {
-			result[0] = 0;
-		}
-		else {
-			result[0] = j - 1;
-		}
-
-		if (k >= right) {
-			result[1] = right;
-		}
-		else {
-			result[1] = k;
-		} // store and return the indices of the equals partition
-
-		return result;
+		int[] partitionIndices = {0, 0};
+		partitionIndices[0] = Math.max(0, j - 2); // rightmost index of the less-than partition
+		partitionIndices[1] = Math.min(right, k + 1); // leftmost index of the greater-than partition
+		return partitionIndices;
 	}
 
-	// point-label or point-count pair
-	private static class Pair {
-		private int point, label, count;
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		int s = input.nextInt();
+		int p = input.nextInt();
 
-		private Pair(int point, int label) {
-			this.point = point;
-			this.label = label;
+		int[] starts = new int[s];
+		int[] ends = new int[s];
+		for (int i = 0; i < s; i++) {
+			starts[i] = input.nextInt();
+			ends[i] = input.nextInt();
 		}
 
-		private Pair(int point, int label, int count) {
-			this.point = point;
-			this.label = label;
-			this.count = count;
+		int[] points = new int[p];
+		for (int i = 0; i < p; i++) {
+			points[i] = input.nextInt();
 		}
+
+		Pair[] labeledPoints = labelPoints(starts, ends, points);
+		quickSort(labeledPoints, 0, labeledPoints.length - 1);
+		Pair[] counts = getCounts(labeledPoints, points.length);
+		printResult(counts, points);
 	}
-
-	/* // print Pair[] method, for testing
-	private static void printPairArr(Pair[] arr) {
-		int n = arr.length;
-		for (int i = 0; i < n; i++) {
-			System.out.println("Index: " + i + ", point, label: " + arr[i].point + ", " + arr[i].label);
-		}
-	} */
 }
