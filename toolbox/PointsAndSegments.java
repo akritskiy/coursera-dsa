@@ -1,4 +1,7 @@
-/* Given a set of points and a set of segments, the goal is to compute, for each point, the number of segments that contain the point. The number of segments and points can each be as large as 50,000. Each point and segment endpoint can range from -10^8 to 10^8.
+/* Given a set of points and a set of segments, the goal is to compute, for each
+point, the number of segments that contain the point. The number of segments and
+points can each be as large as 50,000. Each point and segment endpoint can range
+from -10^8 to 10^8.
 
 For example:
 Input:

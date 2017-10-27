@@ -23,7 +23,7 @@ import java.util.Scanner;
 
 public class MajorityElement {
     private static int finalCheckMajority(int[] arr) {
-        int candidate = majorityCandidate(arr);
+        int candidate = majorityCandidate(arr, 0, arr.length - 1);
         int count = 0;
         int mid = arr.length / 2;
         for (int i = 0; i < arr.length; i++) {
@@ -35,10 +35,6 @@ public class MajorityElement {
             }
         }
         return 0;
-    }
-
-    private static int majorityCandidate(int[] arr) {
-        return majorityCandidate(arr, 0, arr.length - 1);
     }
 
     private static int majorityCandidate(int[] arr, int left, int right) {
