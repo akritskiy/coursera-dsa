@@ -45,7 +45,7 @@ Explanation:
 
 Another example:
 Input:
-4 20
+4 10
 1 1 1 1 1 1 1 1 1 1
 Output:
 0 0
